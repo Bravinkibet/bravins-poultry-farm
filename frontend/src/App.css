@@ -12,6 +12,7 @@ body {
   min-height: 100vh;
 }
 
+/* Global Navbar styles (if not overridden by Navbar.css) */
 .navbar {
   background-color: #228B22;
   color: white;
@@ -21,6 +22,7 @@ body {
   justify-content: space-between;
 }
 
+/* Adjust the logo if needed */
 .navbar-logo img {
   width: 50px;
   height: auto;
@@ -51,6 +53,7 @@ body {
   margin-top: auto;
 }
 
+/* Home page styles */
 .home {
   padding: 20px;
 }
@@ -70,6 +73,7 @@ body {
   border: 2px solid #ddd;
 }
 
+/* Products page styles */
 .products {
   padding: 20px;
 }
@@ -89,6 +93,7 @@ body {
   width: 250px;
 }
 
+/* Order page styles */
 .order-page {
   padding: 20px;
 }

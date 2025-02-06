@@ -1,0 +1,60 @@
+/* src/styles/Logout.css */
+/* Modal Background */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  /* Modal Content */
+  .modal-content {
+    padding: 20px;
+    background-color: #663d21;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+  
+  /* Title Styling */
+  .modal-content h1 {
+    font-size: 50px;
+    font-family: 'Dancing Script', cursive;
+    margin-bottom: 30px;
+    color: rgb(252, 228, 183);
+  }
+  
+  /* Button Styling */
+  .modal-content button {
+    margin: 10px;
+    width: 120px;
+    font-size: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    background: radial-gradient(circle at center, #462a02, #2b1901, #0d0804);
+    color: rgb(252, 228, 183);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .modal-content button:hover {
+    transform: scale(1.09);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    border-bottom: 2px solid orangered;
+  }
+  
+  /* Centered text (if needed) */
+  .modal-content .centered-text {
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    color: rgb(252, 228, 183);
+    margin-left: 16px;
+  }
+  

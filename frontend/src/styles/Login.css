@@ -1,0 +1,77 @@
+/* src/styles/Login.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  /* Using one of your images as background */
+  background-image: url('../img/page3.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.form-container {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  width: 400px;
+}
+
+h2 {
+  color: white;
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+input {
+  width: 100%;
+  padding: 15px;
+  border-radius: 25px;
+  border: none;
+  margin-top: 5px;
+  font-size: 18px;
+}
+
+button {
+  width: 100%;
+  padding: 15px;
+  background-color: #ff6f61;
+  border: none;
+  color: white;
+  font-size: 18px;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #ff3d2e;
+}
+
+.signup-link {
+  margin-top: 20px;
+  color: white;
+}
+
+.signup-link a {
+  color: #ff6f61;
+  text-decoration: none;
+}
+
+.signup-link a:hover {
+  text-decoration: underline;
+}

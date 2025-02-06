@@ -1,3 +1,4 @@
+// src/components/ProductCard.js
 import React from 'react';
 
 const ProductCard = ({ product }) => {

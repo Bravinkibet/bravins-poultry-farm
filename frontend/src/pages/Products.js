@@ -1,3 +1,4 @@
+// src/pages/Products.js
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import ProductCard from '../components/ProductCard';
@@ -8,16 +9,20 @@ const Products = () => {
   useEffect(() => {
     axios.get('http://127.0.0.1:5000/products/')
       .then(response => setProducts(response.data))
-      .catch(error => console.log(error));
+      .catch(error => console.error('Error fetching products:', error));
   }, []);
 
   return (
-    <div>
+    <div className="products">
       <h2>Our Products</h2>
       <div className="product-grid">
-        {products.map(product => (
-          <ProductCard key={product.id} product={product} />
-        ))}
+        {products.length > 0 ? (
+          products.map(product => (
+            <ProductCard key={product.id} product={product} />
+          ))
+        ) : (
+          <p>No products available.</p>
+        )}
       </div>
     </div>
   );

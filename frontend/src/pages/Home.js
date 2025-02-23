@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"; // Keep this if you use links in your content
 import "../styles/HomePage.css";
 
 function HomePage() {
@@ -77,7 +77,7 @@ function HomePage() {
                   For all across your meals by providing you with the finest eggs and chickens, 
                   ensuring great taste and flavor in every bite.`,
       leftImage:
-        "https://media.istockphoto.com/id/1217649450/photo/chicken-or-hen-on-a-green-meadow.jpg?s=612x612&w=0&k=20&c=zRlZTkwoc-aWb3kI10OqlRLbiQw3R3_KUIchNVFgYgw=",
+        "https://t4.ftcdn.net/jpg/01/80/06/15/360_F_180061581_X2dk6rx8IApmWMBIIO0wjjPX1A99iYn5.jpg",
     },
     {
       leftHeading: "Streamlined Ordering Process for Fresh Produce",
@@ -90,7 +90,7 @@ function HomePage() {
                   For all across your meals by providing you with the finest eggs and chickens, 
                   ensuring great taste and flavor in every bite.`,
       leftImage:
-        "https://media.istockphoto.com/id/1217649450/photo/chicken-or-hen-on-a-green-meadow.jpg?s=612x612&w=0&k=20&c=zRlZTkwoc-aWb3kI10OqlRLbiQw3R3_KUIchNVFgYgw=",
+        "https://files.ekmcdn.com/654da0/images/chicken-live-insect-food-pack-723-p.png",
     },
   ];
 
@@ -111,36 +111,10 @@ function HomePage() {
    ****************************************************/
   return (
     <div className="eldo-poultry-container">
-      {/* =============== NAVBAR =============== */}
-      <header className="navbar">
-        <div className="navbar-left">
-          <Link to="/">
-            <h1 className="brand-name">ELDO-POULTRY</h1>
-          </Link>
-        </div>
-        <div className="navbar-right">
-          <ul className="nav-links">
-            {/* Using Link for Login as per your Navbar formula */}
-            <li>
-              <Link to="/login">SignUp/LogIn</Link>
-            </li>
-            {/* Leaving Products link unchanged */}
-            <li>
-              <a href="#products">Products</a>
-            </li>
-            <li>
-              <a href="#dashboard">Dashboard</a>
-            </li>
-            <li>
-              <a href="#contact">Contact Us</a>
-            </li>
-          </ul>
-          {/* Using Link for Order Now button */}
-          <Link to="/order">
-            <button className="order-now-btn">Order Now</button>
-          </Link>
-        </div>
-      </header>
+      {/* 
+          Notice: The navbar has been removed from here since your App.js already 
+          imports and renders your Navbar component.
+      */}
 
       {/* =============== HERO SECTION =============== */}
       <section className="hero-section">
@@ -171,7 +145,7 @@ function HomePage() {
         </div>
         <div className="hero-image-area">
           <img
-            src="https://media.istockphoto.com/id/1217649450/photo/chicken-or-hen-on-a-green-meadow.jpg?s=612x612&w=0&k=20&c=zRlZTkwoc-aWb3kI10OqlRLbiQw3R3_KUIchNVFgYgw="
+            src="https://imagedelivery.net/xaKlCos5cTg_1RWzIu_h-A/630e6515-002a-45f3-9516-2387c64f3e00/public"
             alt="Chickens"
             className="hero-image"
           />
@@ -252,28 +226,28 @@ function HomePage() {
         <div className="farm-fresh-cards">
           <div className="farm-card">
             <img
-              src="https://media.istockphoto.com/id/1217649450/photo/chicken-or-hen-on-a-green-meadow.jpg?s=612x612&w=0&k=20&c=zRlZTkwoc-aWb3kI10OqlRLbiQw3R3_KUIchNVFgYgw="
+              src="https://files.ekmcdn.com/654da0/images/chicken-live-insect-food-pack-723-p.png"
               alt="Healthy Chickens"
             />
             <h4>Healthy Chickens</h4>
           </div>
           <div className="farm-card">
             <img
-              src="https://media.istockphoto.com/id/1217649450/photo/chicken-or-hen-on-a-green-meadow.jpg?s=612x612&w=0&k=20&c=zRlZTkwoc-aWb3kI10OqlRLbiQw3R3_KUIchNVFgYgw="
+              src="https://ganico.co.za/wp-content/uploads/2020/11/Farm-Eggs-04.jpg"
               alt="Organic Eggs"
             />
             <h4>Organic Eggs</h4>
           </div>
           <div className="farm-card">
             <img
-              src="https://media.istockphoto.com/id/1217649450/photo/chicken-or-hen-on-a-green-meadow.jpg?s=612x612&w=0&k=20&c=zRlZTkwoc-aWb3kI10OqlRLbiQw3R3_KUIchNVFgYgw="
+              src="https://www.geldofpoultry.com/media/pages/day-old-chicks/644f31ddb7-1687438190/layer-55.jpg"
               alt="Day-Old Chicks"
             />
             <h4>Day-Old Chicks</h4>
           </div>
           <div className="farm-card">
             <img
-              src="https://media.istockphoto.com/id/1217649450/photo/chicken-or-hen-on-a-green-meadow.jpg?s=612x612&w=0&k=20&c=zRlZTkwoc-aWb3kI10OqlRLbiQw3R3_KUIchNVFgYgw="
+              src="https://walktoeat.com/wp-content/uploads/2020/08/free-range-chickens.jpg"
               alt="Quality Chickens"
             />
             <h4>Quality Chickens</h4>
@@ -368,7 +342,7 @@ function HomePage() {
         </div>
         <div className="elevate-image">
           <img
-            src="https://media.istockphoto.com/id/1217649450/photo/chicken-or-hen-on-a-green-meadow.jpg?s=612x612&w=0&k=20&c=zRlZTkwoc-aWb3kI10OqlRLbiQw3R3_KUIchNVFgYgw="
+            src="https://cdn.britannica.com/18/137318-050-29F7072E/rooster-Rhode-Island-Red-roosters-chicken-domestication.jpg"
             alt="Chicks on the Farm"
           />
         </div>
@@ -420,15 +394,15 @@ function HomePage() {
         <h3>Connect with ELDO-POULTRY Today!</h3>
         <div className="community-images">
           <img
-            src="https://media.istockphoto.com/id/1217649450/photo/chicken-or-hen-on-a-green-meadow.jpg?s=612x612&w=0&k=20&c=zRlZTkwoc-aWb3kI10OqlRLbiQw3R3_KUIchNVFgYgw="
+            src="https://www.geldofpoultry.com/media/pages/day-old-chicks/644f31ddb7-1687438190/layer-55.jpg"
             alt="Community Chicken 1"
           />
           <img
-            src="https://media.istockphoto.com/id/1217649450/photo/chicken-or-hen-on-a-green-meadow.jpg?s=612x612&w=0&k=20&c=zRlZTkwoc-aWb3kI10OqlRLbiQw3R3_KUIchNVFgYgw="
+            src="https://walktoeat.com/wp-content/uploads/2020/08/free-range-chickens.jpg"
             alt="Community Chicken 2"
           />
           <img
-            src="https://media.istockphoto.com/id/1217649450/photo/chicken-or-hen-on-a-green-meadow.jpg?s=612x612&w=0&k=20&c=zRlZTkwoc-aWb3kI10OqlRLbiQw3R3_KUIchNVFgYgw="
+            src="https://cdn.britannica.com/18/137318-050-29F7072E/rooster-Rhode-Island-Red-roosters-chicken-domestication.jpg"
             alt="Community Chicken 3"
           />
           <img
@@ -436,7 +410,7 @@ function HomePage() {
             alt="Community Chicken 4"
           />
           <img
-            src="https://media.istockphoto.com/id/1217649450/photo/chicken-or-hen-on-a-green-meadow.jpg?s=612x612&w=0&k=20&c=zRlZTkwoc-aWb3kI10OqlRLbiQw3R3_KUIchNVFgYgw="
+            src="https://t4.ftcdn.net/jpg/01/80/06/15/360_F_180061581_X2dk6rx8IApmWMBIIO0wjjPX1A99iYn5.jpg"
             alt="Community Chicken 5"
           />
         </div>
@@ -500,7 +474,7 @@ function HomePage() {
           </div>
         </div>
         <div className="footer-bottom">
-          <p>© 2025 ELDO-POULTRY. All Rights Reserved.</p>
+          <p></p>
         </div>
       </footer>
     </div>

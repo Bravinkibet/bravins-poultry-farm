@@ -1,21 +1,16 @@
-// src/components/Navbar.js
-import React from 'react';
-import { Link } from 'react-router-dom';
-import '../styles/Navbar.css';
-import logo from '../img/page_logo.jpg'; // Use your logo image
+import React from "react";
+import { Link } from "react-router-dom";
+import "../styles/Navbar.css";
 
 const Navbar = () => {
   return (
     <nav className="navbar">
-      <div className="navbar-logo">
-        <img src={logo} alt="Logo" />
-      </div>
-      <h2>Eldo-Poultry</h2>
-      <ul>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/products">Products</Link></li>
-        <li><Link to="/order">Order</Link></li>
-        <li><Link to="/login">Login</Link></li>
+      <h2 className="navbar-logo">Eldo-Poultry</h2>
+      <ul className="nav-links">
+        <li><Link to="/" className="nav-button">Home</Link></li>
+        <li><Link to="/order" className="nav-button">Order</Link></li>
+        <li><Link to="/login" className="nav-button">Login</Link></li>
+        <li><Link to="/#dashboard" className="nav-button">Dashboard</Link></li>
       </ul>
     </nav>
   );

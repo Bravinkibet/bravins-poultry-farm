@@ -1,0 +1,10 @@
+.order-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('https://afrimash.com/wp-content/uploads/2022/04/image-2022-04-03T222358.159-1200x800.jpg'); 
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+}

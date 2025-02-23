@@ -1,7 +1,7 @@
-## Bravin's Poultry Farm
+## ELDO-POULTRY
 Tagline: Healthy Chickens, Delicious Eggs – Straight from the Farm!
 
-Bravin's Poultry Farm is a full-stack web application designed to help customers easily browse, order, and receive products like fully grown chickens, chicks of different ages, and fresh eggs. The app is built using React for the front-end, and Flask for the back-end, ensuring a seamless and user-friendly experience.
+ELDO-POULTRY is a full-stack web application designed to help customers easily browse, order, and receive products like fully grown chickens, chicks of different ages, and fresh eggs. The app is built using React for the front-end, and Flask for the back-end, ensuring a seamless and user-friendly experience.
 
 ## Table of Contents
 Overview

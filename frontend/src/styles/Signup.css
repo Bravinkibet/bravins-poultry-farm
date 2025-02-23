@@ -14,7 +14,7 @@
   align-items: center;
   height: 100vh;
   /* Using a background image from your project */
-  background-image: url('../img/page2.jpg');
+  background-image: url('https://media.istockphoto.com/id/1217649450/photo/chicken-or-hen-on-a-green-meadow.jpg?s=612x612&w=0&k=20&c=zRlZTkwoc-aWb3kI10OqlRLbiQw3R3_KUIchNVFgYgw=');
   background-size: cover;
   background-position: center;
 }

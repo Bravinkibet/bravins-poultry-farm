@@ -14,7 +14,7 @@
   align-items: center;
   height: 100vh;
   /* Using one of your images as background */
-  background-image: url('../img/page3.jpg');
+  background-image: url('https://t4.ftcdn.net/jpg/01/80/06/15/360_F_180061581_X2dk6rx8IApmWMBIIO0wjjPX1A99iYn5.jpg');
   background-size: cover;
   background-position: center;
 }

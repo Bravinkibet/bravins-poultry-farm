@@ -1,15 +1,15 @@
-// src/pages/Signup.js
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/Signup.css";
 
 const Signup = () => {
-  const navigate = useNavigate(); // Used to navigate to the Login page
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     firstName: "",
+    middleName: "",
     lastName: "",
     email: "",
-    birthDate: "",
+    location: "",
     phoneNumber: "",
     password: "",
     confirmPassword: "",
@@ -25,8 +25,7 @@ const Signup = () => {
     if (formData.password !== formData.confirmPassword) {
       alert("Passwords don't match");
     } else {
-      console.log(formData); // Handle form submission logic here
-      // After successful sign-up, redirect to login page
+      console.log(formData);
       navigate("/login");
     }
   };
@@ -43,6 +42,16 @@ const Signup = () => {
               value={formData.firstName}
               onChange={handleChange}
               placeholder="First Name"
+              required
+            />
+          </div>
+          <div className="form-group">
+            <input
+              type="text"
+              name="middleName"
+              value={formData.middleName}
+              onChange={handleChange}
+              placeholder="Middle Name"
               required
             />
           </div>
@@ -68,10 +77,11 @@ const Signup = () => {
           </div>
           <div className="form-group">
             <input
-              type="date"
-              name="birthDate"
-              value={formData.birthDate}
+              type="text"
+              name="location"
+              value={formData.location}
               onChange={handleChange}
+              placeholder="Location"
               required
             />
           </div>
@@ -105,29 +115,11 @@ const Signup = () => {
               required
             />
           </div>
-          <button type="submit" className="signup-btn">
-            Sign Up
-          </button>
+          <button type="submit" className="signup-btn">Sign Up</button>
         </form>
-
-        {/* Sign up with Google Button */}
-        <div className="google-btn">
-          <button className="google-btn-style">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg"
-              alt="Google Logo"
-              className="google-logo"
-            />
-            Sign up with Google
-          </button>
-        </div>
-
-        {/* Already have an account link */}
         <p className="signup-link">
-          Already have an account?{" "}
-          <Link to="/login" className="login-link">
-            Log In
-          </Link>
+          Already have an account? {" "}
+          <Link to="/login" className="login-link">Log In</Link>
         </p>
       </div>
     </div>

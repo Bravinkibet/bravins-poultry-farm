@@ -10,7 +10,7 @@ const Navbar = () => {
       <div className="navbar-logo">
         <img src={logo} alt="Logo" />
       </div>
-      <h2>Bravin’s Poultry Farm</h2>
+      <h2>Eldo-Poultry</h2>
       <ul>
         <li><Link to="/">Home</Link></li>
         <li><Link to="/products">Products</Link></li>

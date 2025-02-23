@@ -6,6 +6,7 @@ from config import Config
 from routes.auth_routes import auth_bp
 from routes.product_routes import product_bp
 from routes.order_routes import order_bp
+from models import User, Product, Order  # Ensure models are imported
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -13,7 +14,7 @@ app.config.from_object(Config)
 CORS(app)  # Enable cross-origin requests
 
 db.init_app(app)
-migrate = Migrate(app, db)  # Add this line
+migrate = Migrate(app, db)  # Initialize Flask-Migrate with your app and database
 
 # Registering Blueprints
 app.register_blueprint(auth_bp, url_prefix='/auth')

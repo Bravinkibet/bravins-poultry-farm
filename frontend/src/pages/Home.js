@@ -1,5 +1,6 @@
+// src/pages/HomePage.js
 import React, { useState } from "react";
-import { Link } from "react-router-dom"; // Keep this if you use links in your content
+import { Link } from "react-router-dom";
 import "../styles/HomePage.css";
 
 function HomePage() {
@@ -10,8 +11,8 @@ function HomePage() {
     {
       heading: "About ELDO-POULTRY",
       subheading: "Experience the Best in Poultry Farming.",
-      paragraph: `Transform your poultry shopping experience with ELDO-POULTRY, where we prioritize quality and transparency. 
-                  Our commitment to providing healthy chickens and fresh eggs means you can now get all your poultry needs 
+      paragraph: `Transform your poultry shopping experience with ELDO-POULTRY, where we prioritize quality and transparency.
+                  Our commitment to providing healthy chickens and fresh eggs means you can now get all your poultry needs
                   done straight from our farm to your table.`,
       buttonText: "Explore the Platform",
       cards: [
@@ -30,8 +31,8 @@ function HomePage() {
     {
       heading: "About ELDO-POULTRY",
       subheading: "Experience the Best in Poultry Farming.",
-      paragraph: `Transform your poultry shopping experience with ELDO-POULTRY, where we prioritize quality and transparency. 
-                  Our commitment to providing healthy chickens and fresh eggs means you can now get all your poultry needs 
+      paragraph: `Transform your poultry shopping experience with ELDO-POULTRY, where we prioritize quality and transparency.
+                  Our commitment to providing healthy chickens and fresh eggs means you can now get all your poultry needs
                   done straight from our farm to your table.`,
       buttonText: "Explore the Platform",
       cards: [
@@ -67,27 +68,27 @@ function HomePage() {
   const streamlinedSlides = [
     {
       leftHeading: "Transform Your Poultry Purchasing Journey",
-      leftText: `Experience health and simplicity with ELDO-POULTRY. 
-                 Where nutrition, delicious eggs and strong, energetic chicks come with ease, 
+      leftText: `Experience health and simplicity with ELDO-POULTRY.
+                 Where nutrition, delicious eggs and strong, energetic chicks come with ease,
                  ensuring superior care and peace of mind.`,
       buttonText: "Request a Consultation",
       pagination: "1 / 2",
       rightHeading: "Elevate Your Dining Experience with ELDO-POULTRY",
-      rightText: `Crafting your dream poultry experience is now simpler. 
-                  For all across your meals by providing you with the finest eggs and chickens, 
+      rightText: `Crafting your dream poultry experience is now simpler.
+                  For all across your meals by providing you with the finest eggs and chickens,
                   ensuring great taste and flavor in every bite.`,
       leftImage:
         "https://t4.ftcdn.net/jpg/01/80/06/15/360_F_180061581_X2dk6rx8IApmWMBIIO0wjjPX1A99iYn5.jpg",
     },
     {
       leftHeading: "Streamlined Ordering Process for Fresh Produce",
-      leftText: `Select your desired products and watch as your total price is calculated 
+      leftText: `Select your desired products and watch as your total price is calculated
                  in real-time. You’ll receive immediate feedback upon your order.`,
       buttonText: "Request a Consultation",
       pagination: "2 / 2",
       rightHeading: "Elevate Your Dining Experience with ELDO-POULTRY",
-      rightText: `Crafting your dream poultry experience is now simpler. 
-                  For all across your meals by providing you with the finest eggs and chickens, 
+      rightText: `Crafting your dream poultry experience is now simpler.
+                  For all across your meals by providing you with the finest eggs and chickens,
                   ensuring great taste and flavor in every bite.`,
       leftImage:
         "https://files.ekmcdn.com/654da0/images/chicken-live-insect-food-pack-723-p.png",
@@ -107,15 +108,49 @@ function HomePage() {
   };
 
   /****************************************************
-   * RENDER
+   * FAQ ACCORDION
    ****************************************************/
+  const faqData = [
+    {
+      question: "How Do I Place an Order for Poultry Products?",
+      answer:
+        "Placing an order is easy! Simply navigate to our Order page, choose your desired products, specify quantities, and let our system calculate the total for you in real-time. Then confirm your order and choose a payment method.",
+    },
+    {
+      question: "What Products Do You Offer?",
+      answer:
+        "Our farm boasts a variety of premium products including nutrient-rich eggs, day-old chicks, and fully grown chickens. Each product comes with thorough descriptions and real-time pricing visibility on our Products page.",
+    },
+    {
+      question: "How Is My Information Secured?",
+      answer:
+        "We take security seriously. Our site uses encryption and authentication employing robust methods ensuring that your personal information is fully protected while you shop on our website.",
+    },
+    {
+      question: "Can I Get Help with My Order?",
+      answer:
+        "Yes! We have a dedicated team here to assist you with questions regarding product selection, the ordering process, and delivery. Feel free to reach out anytime.",
+    },
+    {
+      question: "How Can ELDO-POULTRY Enhance My Meals?",
+      answer:
+        "We provide fresh, nutritious chickens and eggs, making it easier for you to whip up delicious and healthy meals. Enjoy the best flavors and quality in every bite.",
+    },
+    {
+      question: "What Should I Know Before Placing an Order?",
+      answer:
+        "It's important to review our product categories clearly and understand the specific types and ages of your chicks and chickens. Our Product page provides detailed information for an informed purchase.",
+    },
+  ];
+
+  const [openFaqIndex, setOpenFaqIndex] = useState(null);
+
+  const toggleFaq = (index) => {
+    setOpenFaqIndex((prevIndex) => (prevIndex === index ? null : index));
+  };
+
   return (
     <div className="eldo-poultry-container">
-      {/* 
-          Notice: The navbar has been removed from here since your App.js already 
-          imports and renders your Navbar component.
-      */}
-
       {/* =============== HERO SECTION =============== */}
       <section className="hero-section">
         <div className="hero-text-area">
@@ -126,8 +161,8 @@ function HomePage() {
             On our platform, quality and transparency come together to ensure
             nutritious, healthy chickens and delicious eggs are right from our
             farm to your table. Discover our diverse range of products,
-            including fresh eggs, day-old chicks, and fully grown chickens.
-            Each product is carefully transported and dispatched with detailed
+            including fresh eggs, day-old chicks, and fully grown chickens. Each
+            product is carefully transported and dispatched with detailed
             descriptions, making it effortless to navigate your options.
           </p>
           <div className="hero-buttons">
@@ -137,8 +172,8 @@ function HomePage() {
             <h3>Unlock Poultry Perfection</h3>
             <p>
               Discover a seamless farm-to-table experience with our intuitive
-              ordering platform. Select premium products you want and place
-              your orders.
+              ordering platform. Select premium products you want and place your
+              orders.
             </p>
             <button className="view-products-btn">View Products</button>
           </div>
@@ -348,35 +383,24 @@ function HomePage() {
         </div>
       </section>
 
-      {/* =============== FAQ SECTION =============== */}
+      {/* =============== FAQ SECTION (ACCORDION) =============== */}
       <section className="faq-section">
         <h2>Frequently Asked Questions</h2>
-        <div className="faq-item">
-          <button className="faq-question">
-            How Do I Place an Order for Poultry Products?
-          </button>
-        </div>
-        <div className="faq-item">
-          <button className="faq-question">What Products Do You Offer?</button>
-        </div>
-        <div className="faq-item">
-          <button className="faq-question">
-            How Is My Information Secured?
-          </button>
-        </div>
-        <div className="faq-item">
-          <button className="faq-question">Can I Get Help with My Order?</button>
-        </div>
-        <div className="faq-item">
-          <button className="faq-question">
-            How Can ELDO-POULTRY Enhance My Meals?
-          </button>
-        </div>
-        <div className="faq-item">
-          <button className="faq-question">
-            What Should I Know Before Placing an Order?
-          </button>
-        </div>
+        {faqData.map((faq, index) => (
+          <div key={index} className="faq-item">
+            <button className="faq-question" onClick={() => toggleFaq(index)}>
+              {faq.question}
+              <span className="faq-arrow">
+                {openFaqIndex === index ? "▲" : "▼"}
+              </span>
+            </button>
+            {openFaqIndex === index && (
+              <div className="faq-answer">
+                <p>{faq.answer}</p>
+              </div>
+            )}
+          </div>
+        ))}
       </section>
 
       {/* =============== COMMUNITY SECTION =============== */}

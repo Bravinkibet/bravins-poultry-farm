@@ -1,3 +1,4 @@
+// src/pages/HomePage.js
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/HomePage.css";
@@ -136,10 +137,10 @@ function HomePage() {
     setOpenFaqIndex((prevIndex) => (prevIndex === index ? null : index));
   };
 
-  // New state to handle contact modal visibility
+  // State to handle contact modal visibility
   const [showContactModal, setShowContactModal] = useState(false);
 
-  // Functions to handle scrolling to the offerings section (id="products")
+  // Function to scroll to the offerings section
   const scrollToProducts = () => {
     const section = document.getElementById("products");
     if (section) {
@@ -147,7 +148,7 @@ function HomePage() {
     }
   };
 
-  // Function to open WhatsApp with pre-typed message
+  // Function to open WhatsApp with a pre-typed message
   const openWhatsApp = () => {
     const message = encodeURIComponent(
       "Hello! I would like to consult about your products."
@@ -156,9 +157,8 @@ function HomePage() {
     window.open(url, "_blank");
   };
 
-  // Function to close contact modal when clicking outside modal content
+  // Close contact modal if clicking outside the modal content
   const handleModalOverlayClick = (e) => {
-    // Only close if clicking the overlay (not the modal content)
     if (e.target.className === "modal") {
       setShowContactModal(false);
     }
@@ -175,13 +175,13 @@ function HomePage() {
           <p className="hero-paragraph">
             On our platform, quality and transparency come together to ensure
             nutritious, healthy chickens and delicious eggs are right from our
-            farm to your table. Discover our diverse range of products,
-            including fresh eggs, day-old chicks, and fully grown chickens. Each
-            product is carefully transported and dispatched with detailed
-            descriptions, making it effortless to navigate your options.
+            farm to your table. Discover our diverse range of products, including
+            fresh eggs, day-old chicks, and fully grown chickens. Each product
+            is carefully transported and dispatched with detailed descriptions,
+            making it effortless to navigate your options.
           </p>
           <div className="hero-buttons">
-            {/* Contact Us Today button opens contact modal */}
+            {/* Contact Us Today opens contact modal */}
             <button
               className="contact-us-btn"
               onClick={() => setShowContactModal(true)}
@@ -214,7 +214,7 @@ function HomePage() {
       {/* Contact Modal */}
       {showContactModal && (
         <div className="modal" onClick={handleModalOverlayClick}>
-          <div className="modal-content">
+          <div className="modal-content contact-modal">
             <h1>Contact Information</h1>
             <p>
               <strong>Phone:</strong> +254 741937056
@@ -249,7 +249,10 @@ function HomePage() {
             <h2>{aboutSlides[aboutIndex].heading}</h2>
             <h3>{aboutSlides[aboutIndex].subheading}</h3>
             <p>{aboutSlides[aboutIndex].paragraph}</p>
-            <button className="explore-products-btn" onClick={scrollToProducts}>
+            <button
+              className="explore-products-btn"
+              onClick={scrollToProducts}
+            >
               {aboutSlides[aboutIndex].buttonText}
             </button>
 
@@ -286,7 +289,7 @@ function HomePage() {
             </div>
             <h3>{streamlinedSlides[streamIndex].leftHeading}</h3>
             <p>{streamlinedSlides[streamIndex].leftText}</p>
-            {/* Request a Consultation button redirects to WhatsApp */}
+            {/* Request a Consultation opens WhatsApp */}
             <button
               className="request-consultation-btn"
               onClick={openWhatsApp}
@@ -361,12 +364,14 @@ function HomePage() {
         <div className="three-card">
           <h3>Transform Your Poultry Purchasing Experience</h3>
           <p>
-            Discover poultry satisfaction with ELDO-POULTRY. Our farm ensures
-            you get healthy chickens and delicious eggs, ensuring every product
+            Discover poultry satisfaction with ELDO-POULTRY. Our farm ensures you
+            get healthy chickens and delicious eggs, ensuring every product
             reaches your table with care and integrity.
           </p>
-          {/* Explore Our Offerings button scrolls to offerings section */}
-          <button onClick={scrollToProducts}>Explore Our Offerings</button>
+          {/* Explore Our Offerings scrolls to products section */}
+          <button onClick={scrollToProducts}>
+            Explore Our Offerings
+          </button>
         </div>
         <div className="three-card">
           <h3>Easily Browse Our Product Categories</h3>
@@ -374,7 +379,7 @@ function HomePage() {
             Our platform features an intuitive browsing system to help you find
             the perfect products in no time.
           </p>
-          {/* Start Ordering Today button routes to Order page */}
+          {/* Start Ordering Today takes to Order page */}
           <Link to="/order">
             <button>Start Ordering Today</button>
           </Link>
@@ -386,8 +391,10 @@ function HomePage() {
             calculations in real-time. Confirmation of your order is immediate,
             ensuring your purchase interactions are frictionless.
           </p>
-          {/* Learn More About Our Services button opens WhatsApp */}
-          <button onClick={openWhatsApp}>Learn More About Our Services</button>
+          {/* Learn More About Our Services opens WhatsApp */}
+          <button onClick={openWhatsApp}>
+            Learn More About Our Services
+          </button>
         </div>
       </section>
 
@@ -468,8 +475,9 @@ function HomePage() {
         </div>
       </section>
 
-      {/* FOOTER */}
+      {/* FOOTER (3 Rows) */}
       <footer className="footer" id="contact">
+        {/* Row 1: Brand and description */}
         <div className="footer-row footer-top">
           <h2>ELDO-POULTRY</h2>
           <p>
@@ -478,6 +486,7 @@ function HomePage() {
             products straight from our farm.
           </p>
         </div>
+        {/* Row 2: Contact information */}
         <div className="footer-row contacts">
           <p><strong>Phone:</strong> +254 741937056</p>
           <p><strong>Email:</strong> eldopoultry254@gmail.com</p>
@@ -494,6 +503,7 @@ function HomePage() {
           </p>
           <p><strong>Address:</strong> 2229-30100, Eldoret</p>
         </div>
+        {/* Row 3: Quick Links */}
         <div className="footer-row quick-links">
           <h3>Quick Links</h3>
           <ul>

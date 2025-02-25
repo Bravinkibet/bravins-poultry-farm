@@ -105,13 +105,11 @@ ul {
   border-bottom-left-radius: 80px;
   border-bottom-right-radius: 80px;
   box-shadow: 0 1px 4px rgba(0,0,0,0.08);
-  
 }
 
 .hero-text-area {
   flex: 1 1 500px;
   margin-right: 20px;
-  
 }
 
 .hero-heading {
@@ -122,10 +120,9 @@ ul {
 }
 
 .hero-paragraph {
-  font-size: 1rem;
+  font-size: large;
   line-height: 1.6;
   margin-bottom: 20px;
-  font-size: large;
 }
 
 .hero-buttons {
@@ -197,7 +194,7 @@ ul {
   ABOUT SECTION (CAROUSEL)
 **************************************************************/
 .about-carousel-section {
-  padding: 100px ;
+  padding: 100px;
   background-color: #fff;
   text-align: center;
 }
@@ -217,24 +214,21 @@ ul {
 }
 
 .about-slide-content h2 {
-  font-size: 1.8rem;
+  font-size: xx-large;
   color: #2b6e2f;
   margin-bottom: 10px;
-  font-size: xx-large;
 }
 
 .about-slide-content h3 {
-  font-size: 1.4rem;
-  margin-bottom: 20px;
   font-size: xx-large;
+  margin-bottom: 20px;
 }
 
 .about-slide-content p {
-  font-size: 1rem;
+  font-size: large;
   max-width: 800px;
   margin: 0 auto 20px;
   line-height: 1.6;
-  font-size: large;
 }
 
 .explore-products-btn {
@@ -271,17 +265,14 @@ ul {
 }
 
 .about-card h4 {
-  font-size: 1.2rem;
+  font-size: x-large;
   margin-bottom: 8px;
   color: #333;
-  max-width: 1500px;
-  font-size: x-large;
 }
 
 .about-card p {
-  font-size: 0.95rem;
-  line-height: 1.5;
   font-size: large;
+  line-height: 1.5;
 }
 
 .about-carousel-nav {
@@ -299,7 +290,7 @@ ul {
   padding: 8px 14px;
   border-radius: 5px;
   cursor: pointer;
-  font-weight: 5000;
+  font-weight: 500;
 }
 
 .about-carousel-nav span {
@@ -327,13 +318,11 @@ ul {
   border-radius: 8px;
   box-shadow: 0 1px 5px rgba(0,0,0,0.07);
   position: relative;
-  
 }
 
 .streamlined-left, .streamlined-right {
   flex: 1 1 400px;
   text-align: left;
-  
 }
 
 .streamlined-image img {
@@ -469,7 +458,6 @@ ul {
   overflow: hidden;
   text-align: center;
   box-shadow: 0 1px 5px rgba(0,0,0,0.07);
-  
 }
 
 .farm-card img {
@@ -674,7 +662,7 @@ ul {
 }
 
 .faq-item {
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   text-align: left;
   max-width: 800px;
   margin: 0 auto 15px;
@@ -813,4 +801,78 @@ ul {
 
 .quick-links a:hover {
   color: #2b6e2f;
+}
+
+/*************************************************************
+  CONTACT MODAL (Styled like Logout Pop-up)
+**************************************************************/
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  z-index: 1000;
+}
+
+.modal-content.contact-modal {
+  background-color: #663d21;
+  color: #fff;
+  padding: 20px 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+}
+
+.modal-content.contact-modal h1 {
+  font-size: 36px;
+  margin-bottom: 25px;
+  color: #fff;
+}
+
+.modal-content.contact-modal p {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.modal-content.contact-modal a {
+  color: #fff;
+  text-decoration: underline;
+}
+
+/*************************************************************
+  MEDIA QUERIES
+**************************************************************/
+@media (max-width: 992px) {
+  .hero-section {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none; /* For mobile, implement a hamburger menu */
+  }
+  .navbar-right {
+    gap: 10px;
+  }
+  .order-now-btn {
+    margin-left: 10px;
+  }
+  .hero-section {
+    flex-direction: column;
+  }
+  .three-card-section {
+    flex-direction: column;
+    align-items: center;
+  }
 }

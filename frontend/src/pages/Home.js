@@ -1,12 +1,9 @@
-// src/pages/HomePage.js
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../styles/HomePage.css";
 
 function HomePage() {
-  /****************************************************
-   * CAROUSEL STATE for the "About ELDO-POULTRY" section
-   ****************************************************/
+  // Carousel state for About ELDO-POULTRY
   const aboutSlides = [
     {
       heading: "About ELDO-POULTRY",
@@ -51,20 +48,16 @@ function HomePage() {
   ];
 
   const [aboutIndex, setAboutIndex] = useState(0);
-
   const handleAboutNext = () => {
     setAboutIndex((prev) => (prev + 1) % aboutSlides.length);
   };
-
   const handleAboutPrev = () => {
     setAboutIndex((prev) =>
       prev === 0 ? aboutSlides.length - 1 : prev - 1
     );
   };
 
-  /****************************************************************
-   * CAROUSEL STATE for the "Streamlined/Transform Purchasing" section
-   ****************************************************************/
+  // Carousel state for Streamlined/Transform Purchasing
   const streamlinedSlides = [
     {
       leftHeading: "Transform Your Poultry Purchasing Journey",
@@ -96,20 +89,16 @@ function HomePage() {
   ];
 
   const [streamIndex, setStreamIndex] = useState(0);
-
   const handleStreamNext = () => {
     setStreamIndex((prev) => (prev + 1) % streamlinedSlides.length);
   };
-
   const handleStreamPrev = () => {
     setStreamIndex((prev) =>
       prev === 0 ? streamlinedSlides.length - 1 : prev - 1
     );
   };
 
-  /****************************************************
-   * FAQ ACCORDION
-   ****************************************************/
+  // FAQ Accordion
   const faqData = [
     {
       question: "How Do I Place an Order for Poultry Products?",
@@ -142,16 +131,42 @@ function HomePage() {
         "It's important to review our product categories clearly and understand the specific types and ages of your chicks and chickens. Our Product page provides detailed information for an informed purchase.",
     },
   ];
-
   const [openFaqIndex, setOpenFaqIndex] = useState(null);
-
   const toggleFaq = (index) => {
     setOpenFaqIndex((prevIndex) => (prevIndex === index ? null : index));
   };
 
+  // New state to handle contact modal visibility
+  const [showContactModal, setShowContactModal] = useState(false);
+
+  // Functions to handle scrolling to the offerings section (id="products")
+  const scrollToProducts = () => {
+    const section = document.getElementById("products");
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  // Function to open WhatsApp with pre-typed message
+  const openWhatsApp = () => {
+    const message = encodeURIComponent(
+      "Hello! I would like to consult about your products."
+    );
+    const url = `https://api.whatsapp.com/send?phone=254741937056&text=${message}`;
+    window.open(url, "_blank");
+  };
+
+  // Function to close contact modal when clicking outside modal content
+  const handleModalOverlayClick = (e) => {
+    // Only close if clicking the overlay (not the modal content)
+    if (e.target.className === "modal") {
+      setShowContactModal(false);
+    }
+  };
+
   return (
     <div className="eldo-poultry-container">
-      {/* =============== HERO SECTION =============== */}
+      {/* HERO SECTION */}
       <section className="hero-section">
         <div className="hero-text-area">
           <h2 className="hero-heading">
@@ -166,7 +181,13 @@ function HomePage() {
             descriptions, making it effortless to navigate your options.
           </p>
           <div className="hero-buttons">
-            <button className="contact-us-btn">Contact Us Today</button>
+            {/* Contact Us Today button opens contact modal */}
+            <button
+              className="contact-us-btn"
+              onClick={() => setShowContactModal(true)}
+            >
+              Contact Us Today
+            </button>
           </div>
           <div className="poultry-perfection">
             <h3>Unlock Poultry Perfection</h3>
@@ -175,7 +196,10 @@ function HomePage() {
               ordering platform. Select premium products you want and place your
               orders.
             </p>
-            <button className="view-products-btn">View Products</button>
+            {/* View Products button scrolls to offerings section */}
+            <button className="view-products-btn" onClick={scrollToProducts}>
+              View Products
+            </button>
           </div>
         </div>
         <div className="hero-image-area">
@@ -187,14 +211,45 @@ function HomePage() {
         </div>
       </section>
 
-      {/* =============== ABOUT SECTION (CAROUSEL) =============== */}
+      {/* Contact Modal */}
+      {showContactModal && (
+        <div className="modal" onClick={handleModalOverlayClick}>
+          <div className="modal-content">
+            <h1>Contact Information</h1>
+            <p>
+              <strong>Phone:</strong> +254 741937056
+            </p>
+            <p>
+              <strong>Email:</strong> eldopoultry254@gmail.com
+            </p>
+            <p>
+              <strong>WhatsApp:</strong> +254 741937056
+            </p>
+            <p>
+              <strong>TikTok:</strong>{" "}
+              <a
+                href="https://www.tiktok.com/@eldopoultry"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                @eldopoultry
+              </a>
+            </p>
+            <p>
+              <strong>Address:</strong> 2229-30100, Eldoret
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* ABOUT SECTION (CAROUSEL) */}
       <section className="about-carousel-section">
         <div className="about-slide-container">
           <div className="about-slide-content">
             <h2>{aboutSlides[aboutIndex].heading}</h2>
             <h3>{aboutSlides[aboutIndex].subheading}</h3>
             <p>{aboutSlides[aboutIndex].paragraph}</p>
-            <button className="explore-products-btn">
+            <button className="explore-products-btn" onClick={scrollToProducts}>
               {aboutSlides[aboutIndex].buttonText}
             </button>
 
@@ -219,7 +274,7 @@ function HomePage() {
         </div>
       </section>
 
-      {/* =============== STREAMLINED ORDERING (CAROUSEL) =============== */}
+      {/* STREAMLINED ORDERING (CAROUSEL) */}
       <section className="streamlined-section">
         <div className="streamlined-carousel">
           <div className="streamlined-left">
@@ -231,7 +286,11 @@ function HomePage() {
             </div>
             <h3>{streamlinedSlides[streamIndex].leftHeading}</h3>
             <p>{streamlinedSlides[streamIndex].leftText}</p>
-            <button className="request-consultation-btn">
+            {/* Request a Consultation button redirects to WhatsApp */}
+            <button
+              className="request-consultation-btn"
+              onClick={openWhatsApp}
+            >
               {streamlinedSlides[streamIndex].buttonText}
             </button>
             <div className="pagination">
@@ -251,12 +310,14 @@ function HomePage() {
         </div>
       </section>
 
-      {/* =============== FARM-FRESH PRODUCTS SECTION =============== */}
+      {/* FARM-FRESH PRODUCTS SECTION */}
       <section className="farm-fresh-section" id="products">
         <div className="farm-fresh-header">
           <div className="offerings-label">Our Offerings</div>
           <h2>Farm-Fresh Products</h2>
-          <button className="explore-now-btn">Explore Now</button>
+          <button className="explore-now-btn" onClick={scrollToProducts}>
+            Explore Now
+          </button>
         </div>
         <div className="farm-fresh-cards">
           <div className="farm-card">
@@ -295,45 +356,7 @@ function HomePage() {
         </p>
       </section>
 
-      {/* =============== DISCOVER QUALITY (VIDEO/IMAGE) SECTION =============== */}
-      <section className="discover-quality-section">
-        <div className="quality-image-container">
-          <img
-            src="https://media.istockphoto.com/id/1217649450/photo/chicken-or-hen-on-a-green-meadow.jpg?s=612x612&w=0&k=20&c=zRlZTkwoc-aWb3kI10OqlRLbiQw3R3_KUIchNVFgYgw="
-            alt="Poultry Farm Interior"
-            className="quality-image"
-          />
-          <div className="play-button">&#9658;</div>
-        </div>
-        <div className="quality-content">
-          <h2>Discover Quality Poultry with ELDO-POULTRY</h2>
-          <p>
-            Experience something truly amazing when you shop farm-fresh
-            offerings, fresh delicious eggs and superior chickens direct from
-            our farm to your table.
-          </p>
-          <div className="stats-row">
-            <div className="stat">
-              <h3>350</h3>
-              <p>Quality Chickens Offered</p>
-            </div>
-            <div className="stat">
-              <h3>1200</h3>
-              <p>Nutritional Eggs Sold</p>
-            </div>
-            <div className="stat">
-              <h3>400</h3>
-              <p>Satisfied Customers</p>
-            </div>
-            <div className="stat">
-              <h3>50+</h3>
-              <p>Decades in the Industry</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* =============== 3-CARD SECTION =============== */}
+      {/* THREE-CARD SECTION */}
       <section className="three-card-section">
         <div className="three-card">
           <h3>Transform Your Poultry Purchasing Experience</h3>
@@ -342,7 +365,8 @@ function HomePage() {
             you get healthy chickens and delicious eggs, ensuring every product
             reaches your table with care and integrity.
           </p>
-          <button>Explore Our Offerings</button>
+          {/* Explore Our Offerings button scrolls to offerings section */}
+          <button onClick={scrollToProducts}>Explore Our Offerings</button>
         </div>
         <div className="three-card">
           <h3>Easily Browse Our Product Categories</h3>
@@ -350,7 +374,10 @@ function HomePage() {
             Our platform features an intuitive browsing system to help you find
             the perfect products in no time.
           </p>
-          <button>Start Ordering Today</button>
+          {/* Start Ordering Today button routes to Order page */}
+          <Link to="/order">
+            <button>Start Ordering Today</button>
+          </Link>
         </div>
         <div className="three-card">
           <h3>Simplified Ordering Process</h3>
@@ -359,11 +386,12 @@ function HomePage() {
             calculations in real-time. Confirmation of your order is immediate,
             ensuring your purchase interactions are frictionless.
           </p>
-          <button>Learn More About Our Services</button>
+          {/* Learn More About Our Services button opens WhatsApp */}
+          <button onClick={openWhatsApp}>Learn More About Our Services</button>
         </div>
       </section>
 
-      {/* =============== ELEVATE YOUR POULTRY SECTION =============== */}
+      {/* ELEVATE YOUR POULTRY SECTION */}
       <section className="elevate-section">
         <div className="elevate-text">
           <h2>Elevate Your Poultry Experience with ELDO-POULTRY</h2>
@@ -383,7 +411,7 @@ function HomePage() {
         </div>
       </section>
 
-      {/* =============== FAQ SECTION (ACCORDION) =============== */}
+      {/* FAQ SECTION (ACCORDION) */}
       <section className="faq-section">
         <h2>Frequently Asked Questions</h2>
         {faqData.map((faq, index) => (
@@ -403,7 +431,7 @@ function HomePage() {
         ))}
       </section>
 
-      {/* =============== COMMUNITY SECTION =============== */}
+      {/* COMMUNITY SECTION */}
       <section className="community-section">
         <h2>Discover Quality Poultry Products in Your Community</h2>
         <p>
@@ -440,65 +468,40 @@ function HomePage() {
         </div>
       </section>
 
-      {/* =============== FOOTER =============== */}
+      {/* FOOTER */}
       <footer className="footer" id="contact">
-        <div className="footer-top">
-          <div className="footer-left">
-            <h2>ELDO-POULTRY</h2>
-            <p>
-              At ELDO-POULTRY, we focus on quality poultry farming. Our
-              dedication to healthy chickens and delicious eggs ensures that you
-              receive the best products straight from our farm.
-            </p>
-            <p>
-              <strong>Phone:</strong> +254 741937056
-            </p>
-            <p>
-              <strong>Email:</strong> eldopoultry254@gmail.com
-            </p>
-            <p>
-              <strong>Address:</strong> 2229-30100, Eldoret
-            </p>
-          </div>
-          <div className="footer-links">
-            <div className="quick-links">
-              <h3>Quick Links</h3>
-              <ul>
-                <li>Home</li>
-                <li>Products</li>
-                <li>Order</li>
-                <li>Login</li>
-                <li>Sign Up</li>
-                <li>Contact</li>
-              </ul>
-            </div>
-            <div className="user-portal">
-              <h3>User Portal</h3>
-              <ul>
-                <li>Dashboard</li>
-              </ul>
-            </div>
-            <div className="follow-us">
-              <h3>Follow Us</h3>
-              <div className="social-icons">
-                <a href="#">
-                  <i className="fa fa-facebook" />
-                </a>
-                <a href="#">
-                  <i className="fa fa-twitter" />
-                </a>
-                <a href="#">
-                  <i className="fa fa-instagram" />
-                </a>
-                <a href="#">
-                  <i className="fa fa-youtube" />
-                </a>
-              </div>
-            </div>
-          </div>
+        <div className="footer-row footer-top">
+          <h2>ELDO-POULTRY</h2>
+          <p>
+            At ELDO-POULTRY, we focus on quality poultry farming. Our dedication to
+            healthy chickens and delicious eggs ensures that you receive the best
+            products straight from our farm.
+          </p>
         </div>
-        <div className="footer-bottom">
-          <p></p>
+        <div className="footer-row contacts">
+          <p><strong>Phone:</strong> +254 741937056</p>
+          <p><strong>Email:</strong> eldopoultry254@gmail.com</p>
+          <p><strong>WhatsApp:</strong> +254 741937056</p>
+          <p>
+            <strong>TikTok:</strong>{" "}
+            <a
+              href="https://www.tiktok.com/@eldopoultry"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              @eldopoultry
+            </a>
+          </p>
+          <p><strong>Address:</strong> 2229-30100, Eldoret</p>
+        </div>
+        <div className="footer-row quick-links">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/order">Order</Link></li>
+            <li><Link to="/login">Login</Link></li>
+            <li><Link to="/signup">Sign Up</Link></li>
+          </ul>
         </div>
       </footer>
     </div>

@@ -1,32 +1,28 @@
+// src/components/OrderForm.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../styles/OrderForm.css';
 
 const OrderForm = () => {
-  // Order state including fields for all product types
   const [order, setOrder] = useState({
     firstName: '',
     product: '', // eggs, chicks, chicken
-    eggsType: '', // if product === 'eggs': 'kienyeji' or 'improved kienyeji'
-    chicksType: '', // if product === 'chicks': 'kienyeji' or 'improved kienyeji'
-    chicksAge: '',  // if product === 'chicks': age option
-    chickenType: '', // if product === 'chicken': 'jogoo' or 'hen'
-    chickenBreed: '', // if product === 'chicken': 'kienyeji' or 'improved kienyeji'
+    eggsType: '',
+    chicksType: '',
+    chicksAge: '',
+    chickenType: '',
+    chickenBreed: '',
     quantity: 0,
   });
 
-  // Calculated price for eggs/chicks
   const [calculatedPrice, setCalculatedPrice] = useState(0);
-  // Confirmation message (in-page notification)
   const [confirmationMessage, setConfirmationMessage] = useState('');
 
-  // Price mapping for eggs
   const eggPrices = {
     kienyeji: 15,
     'improved kienyeji': 13,
   };
 
-  // Base prices for improved chicks based on age
   const improvedChickPrices = {
     '1 day': 100,
     '1 week': 150,
@@ -38,7 +34,6 @@ const OrderForm = () => {
     '4 months': 450,
   };
 
-  // Weeks count for each age option (for kienyeji chicks, add 5 shillings per week)
   const ageToWeeks = {
     '1 day': 0,
     '1 week': 1,
@@ -50,7 +45,6 @@ const OrderForm = () => {
     '4 months': 16,
   };
 
-  // Auto-calculate price whenever relevant fields change
   useEffect(() => {
     const qty = Number(order.quantity);
     let price = 0;
@@ -61,7 +55,6 @@ const OrderForm = () => {
       if (order.chicksType === 'improved kienyeji') {
         price = qty * basePrice;
       } else if (order.chicksType === 'kienyeji') {
-        // Add 5 shillings per week to the base price for kienyeji chicks
         const extra = 5 * (ageToWeeks[order.chicksAge] || 0);
         price = qty * (basePrice + extra);
       }
@@ -69,7 +62,6 @@ const OrderForm = () => {
     setCalculatedPrice(price);
   }, [order]);
 
-  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setOrder(prev => ({
@@ -78,11 +70,8 @@ const OrderForm = () => {
     }));
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Create a description of the order based on product type
     let productDescription = '';
     if (order.product === 'eggs') {
       productDescription = `${order.quantity} ${order.eggsType} eggs`;
@@ -95,24 +84,19 @@ const OrderForm = () => {
       ? 'Price Range: 500 - 1000 shillings'
       : `Total Price: ${calculatedPrice} shillings`;
 
-    // Uncomment and adjust the axios post as needed for your backend integration
-  
     try {
       const response = await axios.post('http://127.0.0.1:5000/orders/create', order);
       console.log(response.data);
     } catch (error) {
       console.error('Error placing order:', error);
     }
-
-    // Set in-page confirmation message
-    setConfirmationMessage(`Thank you ${order.firstName}! For purchasing ${productDescription} (${priceInfo}) Eldo-Poultry, your order is pending. To complete the order or make negotiations, please contact 0741937056 and indicate whether payment is via MPesa or Cash on Delivery. Your satisfaction is our priority.`);
+    setConfirmationMessage(`Thank you ${order.firstName}! For purchasing ${productDescription} (${priceInfo}) Eldo-Poultry, your order is pending. To complete the order or negotiate, please contact 0741937056 and indicate whether payment is via MPesa or Cash on Delivery.`);
   };
 
   return (
     <div className="order-form-container">
       <h2>Place Your Order</h2>
       <form onSubmit={handleSubmit} className="order-form">
-        {/* First Name for personalized notification */}
         <div className="form-field">
           <label htmlFor="firstName">First Name:</label>
           <input 
@@ -125,7 +109,6 @@ const OrderForm = () => {
           />
         </div>
 
-        {/* Product Selection Dropdown */}
         <div className="form-field">
           <label htmlFor="product">Select Product:</label>
           <select name="product" id="product" onChange={handleChange} required value={order.product}>
@@ -136,7 +119,6 @@ const OrderForm = () => {
           </select>
         </div>
 
-        {/* Conditional fields based on product selection */}
         {order.product === 'eggs' && (
           <div className="form-field">
             <label htmlFor="eggsType">Egg Type:</label>
@@ -196,7 +178,6 @@ const OrderForm = () => {
           </>
         )}
 
-        {/* Common Quantity Field */}
         {order.product && (
           <div className="form-field">
             <label htmlFor="quantity">Quantity:</label>
@@ -212,7 +193,6 @@ const OrderForm = () => {
           </div>
         )}
 
-        {/* Price Display for Eggs and Chicks, and Price Range for Chicken */}
         {order.product === 'eggs' && order.quantity > 0 && order.eggsType && (
           <div className="price-display">
             <p>Total Price: {calculatedPrice} shillings</p>
@@ -232,7 +212,6 @@ const OrderForm = () => {
         <button type="submit" className="order-submit-btn">Submit Order</button>
       </form>
       
-      {/* In-page confirmation message */}
       {confirmationMessage && (
         <div className="confirmation-message">
           <p>{confirmationMessage}</p>

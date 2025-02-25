@@ -12,8 +12,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  /* Using a background image from your project */
+  min-height: 100vh;        /* Use min-height so content can push below the navbar */
+  padding-top: 100px;       /* Offset to prevent navbar overlap (adjust as needed) */
   background-image: url('https://media.istockphoto.com/id/1217649450/photo/chicken-or-hen-on-a-green-meadow.jpg?s=612x612&w=0&k=20&c=zRlZTkwoc-aWb3kI10OqlRLbiQw3R3_KUIchNVFgYgw=');
   background-size: cover;
   background-position: center;
@@ -25,22 +25,22 @@
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   text-align: center;
-  width: 400px;
+  width: 500px;
 }
 
 h2 {
   color: white;
   font-size: 36px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 input {
   width: 100%;
-  padding: 15px;
+  padding: 9px;
   border-radius: 25px;
   border: none;
   margin-top: 5px;
@@ -60,33 +60,6 @@ button {
 
 button:hover {
   background-color: #ff3d2e;
-}
-
-.google-btn {
-  margin-top: 20px;
-}
-
-.google-btn-style {
-  width: 100%;
-  padding: 15px;
-  background-color: #db4437;
-  color: white;
-  font-size: 18px;
-  border-radius: 25px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 15px;
-}
-
-.google-btn-style:hover {
-  background-color: #c1351d;
-}
-
-.google-logo {
-  width: 24px;
-  margin-right: 10px;
 }
 
 .signup-link {

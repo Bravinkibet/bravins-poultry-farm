@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import "../styles/Signup.css";
 
 const Signup = () => {
@@ -20,13 +21,31 @@ const Signup = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (formData.password !== formData.confirmPassword) {
       alert("Passwords don't match");
-    } else {
-      console.log(formData);
+      return;
+    }
+    // Combine first and last name as the username.
+    const username = `${formData.firstName} ${formData.lastName}`;
+    // Prepare payload per your backend register endpoint
+    const payload = {
+      username: username,
+      email: formData.email,
+      password: formData.password,
+      location: formData.location,
+    };
+    try {
+      const response = await axios.post(
+        "http://127.0.0.1:5000/auth/register",
+        payload
+      );
+      console.log("Registration response:", response.data);
       navigate("/login");
+    } catch (error) {
+      console.error("Error registering user:", error);
+      alert("Registration failed. Please try again.");
     }
   };
 
@@ -115,11 +134,15 @@ const Signup = () => {
               required
             />
           </div>
-          <button type="submit" className="signup-btn">Sign Up</button>
+          <button type="submit" className="signup-btn">
+            Sign Up
+          </button>
         </form>
         <p className="signup-link">
-          Already have an account? {" "}
-          <Link to="/login" className="login-link">Log In</Link>
+          Already have an account?{" "}
+          <Link to="/login" className="login-link">
+            Log In
+          </Link>
         </p>
       </div>
     </div>

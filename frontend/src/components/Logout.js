@@ -1,3 +1,4 @@
+// src/components/Logout.js
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Logout.css';
@@ -10,7 +11,7 @@ function Logout({ onLogout }) {
   };
 
   const handleLogout = () => {
-    onLogout(); // Calls the logout function passed from Navbar
+    onLogout();
     setShowModal(false);
   };
 
@@ -21,16 +22,16 @@ function Logout({ onLogout }) {
       </Link>
 
       {showModal && (
-        <div className="modal">
+        <div className="modal" onClick={(e) => {
+          if (e.target.className === "modal") {
+            handleModalClose();
+          }
+        }}>
           <div className="modal-content">
             <h1>Are you sure you want to logout?</h1>
             <div className="modal-buttons">
-              <button onClick={handleLogout} className="logout-btn">
-                Yes
-              </button>
-              <button onClick={handleModalClose} className="cancel-btn">
-                No
-              </button>
+              <button onClick={handleLogout} className="logout-btn">Yes</button>
+              <button onClick={handleModalClose} className="cancel-btn">No</button>
             </div>
           </div>
         </div>

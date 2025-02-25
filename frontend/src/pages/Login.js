@@ -1,3 +1,4 @@
+// src/pages/Login.js
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -18,13 +19,8 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        "http://127.0.0.1:5000/auth/login",
-        loginData
-      );
-      console.log("Login response:", response.data);
+      const response = await axios.post("http://127.0.0.1:5000/auth/login", loginData);
       if (response.data.user_id) {
-        // Save the user_id as a token (or change this to a proper auth token)
         localStorage.setItem("user_token", response.data.user_id);
         navigate("/");
       } else {
@@ -61,12 +57,10 @@ const Login = () => {
               required
             />
           </div>
-          <button type="submit" className="login-btn">
-            Log In
-          </button>
+          <button type="submit" className="login-btn">Log In</button>
         </form>
         <p className="signup-link">
-          Don't have an account? <Link to="/signup">Sign Up</Link>
+          Don't have an account? <Link to="/signup" className="login-link">Sign Up</Link>
         </p>
       </div>
     </div>

@@ -6,7 +6,7 @@ import '../styles/OrderForm.css';
 const OrderForm = () => {
   const [order, setOrder] = useState({
     firstName: '',
-    product: '', // eggs, chicks, chicken
+    product: '',
     eggsType: '',
     chicksType: '',
     chicksAge: '',
@@ -64,10 +64,7 @@ const OrderForm = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setOrder(prev => ({
-      ...prev,
-      [name]: value
-    }));
+    setOrder(prev => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
@@ -80,7 +77,7 @@ const OrderForm = () => {
     } else if (order.product === 'chicken') {
       productDescription = `${order.quantity} ${order.chickenBreed} ${order.chickenType} chicken(s)`;
     }
-    const priceInfo = (order.product === 'chicken') 
+    const priceInfo = order.product === 'chicken' 
       ? 'Price Range: 500 - 1000 shillings'
       : `Total Price: ${calculatedPrice} shillings`;
 
@@ -97,7 +94,7 @@ const OrderForm = () => {
     <div className="order-form-container">
       <h2>Place Your Order</h2>
       <form onSubmit={handleSubmit} className="order-form">
-        <div className="form-field">
+        <div className="form-field full-width">
           <label htmlFor="firstName">First Name:</label>
           <input 
             type="text" 
@@ -108,8 +105,7 @@ const OrderForm = () => {
             required 
           />
         </div>
-
-        <div className="form-field">
+        <div className="form-field full-width">
           <label htmlFor="product">Select Product:</label>
           <select name="product" id="product" onChange={handleChange} required value={order.product}>
             <option value="">-- Choose a product --</option>
@@ -118,9 +114,8 @@ const OrderForm = () => {
             <option value="chicken">Chicken</option>
           </select>
         </div>
-
         {order.product === 'eggs' && (
-          <div className="form-field">
+          <div className="form-field full-width">
             <label htmlFor="eggsType">Egg Type:</label>
             <select name="eggsType" id="eggsType" onChange={handleChange} required value={order.eggsType}>
               <option value="">-- Choose egg type --</option>
@@ -129,10 +124,9 @@ const OrderForm = () => {
             </select>
           </div>
         )}
-
         {order.product === 'chicks' && (
           <>
-            <div className="form-field">
+            <div className="form-field full-width">
               <label htmlFor="chicksType">Chick Type:</label>
               <select name="chicksType" id="chicksType" onChange={handleChange} required value={order.chicksType}>
                 <option value="">-- Choose chick type --</option>
@@ -140,7 +134,7 @@ const OrderForm = () => {
                 <option value="improved kienyeji">Improved Kienyeji</option>
               </select>
             </div>
-            <div className="form-field">
+            <div className="form-field full-width">
               <label htmlFor="chicksAge">Age:</label>
               <select name="chicksAge" id="chicksAge" onChange={handleChange} required value={order.chicksAge}>
                 <option value="">-- Choose age --</option>
@@ -156,10 +150,9 @@ const OrderForm = () => {
             </div>
           </>
         )}
-
         {order.product === 'chicken' && (
           <>
-            <div className="form-field">
+            <div className="form-field full-width">
               <label htmlFor="chickenType">Chicken Type:</label>
               <select name="chickenType" id="chickenType" onChange={handleChange} required value={order.chickenType}>
                 <option value="">-- Choose chicken type --</option>
@@ -167,7 +160,7 @@ const OrderForm = () => {
                 <option value="hen">Hen</option>
               </select>
             </div>
-            <div className="form-field">
+            <div className="form-field full-width">
               <label htmlFor="chickenBreed">Breed:</label>
               <select name="chickenBreed" id="chickenBreed" onChange={handleChange} required value={order.chickenBreed}>
                 <option value="">-- Choose breed --</option>
@@ -177,43 +170,35 @@ const OrderForm = () => {
             </div>
           </>
         )}
-
-        {order.product && (
-          <div className="form-field">
-            <label htmlFor="quantity">Quantity:</label>
-            <input
-              type="number"
-              id="quantity"
-              name="quantity"
-              value={order.quantity}
-              onChange={handleChange}
-              min="1"
-              required
-            />
-          </div>
-        )}
-
-        {order.product === 'eggs' && order.quantity > 0 && order.eggsType && (
-          <div className="price-display">
-            <p>Total Price: {calculatedPrice} shillings</p>
-          </div>
-        )}
-        {order.product === 'chicks' && order.quantity > 0 && order.chicksType && order.chicksAge && (
-          <div className="price-display">
+        <div className="form-field full-width">
+          <label htmlFor="quantity">Quantity:</label>
+          <input
+            type="number"
+            id="quantity"
+            name="quantity"
+            value={order.quantity}
+            onChange={handleChange}
+            min="1"
+            required
+          />
+        </div>
+        {(order.product === 'eggs' || order.product === 'chicks') && order.quantity > 0 && (
+          <div className="price-display full-width">
             <p>Total Price: {calculatedPrice} shillings</p>
           </div>
         )}
         {order.product === 'chicken' && (
-          <div className="price-display">
+          <div className="price-display full-width">
             <p>Price Range: 500 - 1000 shillings</p>
           </div>
         )}
-
-        <button type="submit" className="order-submit-btn">Submit Order</button>
+        <button type="submit" className="order-submit-btn full-width">
+          Submit Order
+        </button>
       </form>
       
       {confirmationMessage && (
-        <div className="confirmation-message">
+        <div className="confirmation-message full-width">
           <p>{confirmationMessage}</p>
         </div>
       )}

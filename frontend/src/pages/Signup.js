@@ -1,3 +1,4 @@
+// src/pages/Signup.js
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -18,7 +19,7 @@ const Signup = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
@@ -27,20 +28,15 @@ const Signup = () => {
       alert("Passwords don't match");
       return;
     }
-    // Combine first and last name as the username.
     const username = `${formData.firstName} ${formData.lastName}`;
-    // Prepare payload per your backend register endpoint
     const payload = {
-      username: username,
+      username,
       email: formData.email,
       password: formData.password,
       location: formData.location,
     };
     try {
-      const response = await axios.post(
-        "http://127.0.0.1:5000/auth/register",
-        payload
-      );
+      const response = await axios.post("http://127.0.0.1:5000/auth/register", payload);
       console.log("Registration response:", response.data);
       navigate("/login");
     } catch (error) {
@@ -134,15 +130,10 @@ const Signup = () => {
               required
             />
           </div>
-          <button type="submit" className="signup-btn">
-            Sign Up
-          </button>
+          <button type="submit" className="signup-btn">Sign Up</button>
         </form>
         <p className="signup-link">
-          Already have an account?{" "}
-          <Link to="/login" className="login-link">
-            Log In
-          </Link>
+          Already have an account? <Link to="/login" className="login-link">Log In</Link>
         </p>
       </div>
     </div>

@@ -1,6 +1,6 @@
 // src/pages/HomePage.js
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../styles/HomePage.css";
 
 function HomePage() {
@@ -137,10 +137,10 @@ function HomePage() {
     setOpenFaqIndex((prevIndex) => (prevIndex === index ? null : index));
   };
 
-  // State to handle contact modal visibility
+  // Contact modal state
   const [showContactModal, setShowContactModal] = useState(false);
 
-  // Function to scroll to the offerings section
+  // Scroll to offerings section
   const scrollToProducts = () => {
     const section = document.getElementById("products");
     if (section) {
@@ -148,16 +148,14 @@ function HomePage() {
     }
   };
 
-  // Function to open WhatsApp with a pre-typed message
+  // Open WhatsApp with pre-typed message
   const openWhatsApp = () => {
-    const message = encodeURIComponent(
-      "Hello! I would like to consult about your products."
-    );
+    const message = encodeURIComponent("Hello! I would like to consult about your products.");
     const url = `https://api.whatsapp.com/send?phone=254741937056&text=${message}`;
     window.open(url, "_blank");
   };
 
-  // Close contact modal if clicking outside the modal content
+  // Close contact modal when clicking outside modal content
   const handleModalOverlayClick = (e) => {
     if (e.target.className === "modal") {
       setShowContactModal(false);
@@ -173,30 +171,18 @@ function HomePage() {
             Transforming Your Poultry Purchasing Experience
           </h2>
           <p className="hero-paragraph">
-            On our platform, quality and transparency come together to ensure
-            nutritious, healthy chickens and delicious eggs are right from our
-            farm to your table. Discover our diverse range of products, including
-            fresh eggs, day-old chicks, and fully grown chickens. Each product
-            is carefully transported and dispatched with detailed descriptions,
-            making it effortless to navigate your options.
+            On our platform, quality and transparency come together to ensure nutritious, healthy chickens and delicious eggs are right from our farm to your table. Discover our diverse range of products, including fresh eggs, day-old chicks, and fully grown chickens. Each product is carefully transported and dispatched with detailed descriptions, making it effortless to navigate your options.
           </p>
           <div className="hero-buttons">
-            {/* Contact Us Today opens contact modal */}
-            <button
-              className="contact-us-btn"
-              onClick={() => setShowContactModal(true)}
-            >
+            <button className="contact-us-btn" onClick={() => setShowContactModal(true)}>
               Contact Us Today
             </button>
           </div>
           <div className="poultry-perfection">
             <h3>Unlock Poultry Perfection</h3>
             <p>
-              Discover a seamless farm-to-table experience with our intuitive
-              ordering platform. Select premium products you want and place your
-              orders.
+              Discover a seamless farm-to-table experience with our intuitive ordering platform. Select premium products you want and place your orders.
             </p>
-            {/* View Products button scrolls to offerings section */}
             <button className="view-products-btn" onClick={scrollToProducts}>
               View Products
             </button>
@@ -211,33 +197,21 @@ function HomePage() {
         </div>
       </section>
 
-      {/* Contact Modal */}
+      {/* CONTACT MODAL */}
       {showContactModal && (
         <div className="modal" onClick={handleModalOverlayClick}>
           <div className="modal-content contact-modal">
             <h1>Contact Information</h1>
-            <p>
-              <strong>Phone:</strong> +254 741937056
-            </p>
-            <p>
-              <strong>Email:</strong> eldopoultry254@gmail.com
-            </p>
-            <p>
-              <strong>WhatsApp:</strong> +254 741937056
-            </p>
+            <p><strong>Phone:</strong> +254 741937056</p>
+            <p><strong>Email:</strong> eldopoultry254@gmail.com</p>
+            <p><strong>WhatsApp:</strong> +254 741937056</p>
             <p>
               <strong>TikTok:</strong>{" "}
-              <a
-                href="https://www.tiktok.com/@eldopoultry"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <a href="https://www.tiktok.com/@eldopoultry" target="_blank" rel="noopener noreferrer">
                 @eldopoultry
               </a>
             </p>
-            <p>
-              <strong>Address:</strong> 2229-30100, Eldoret
-            </p>
+            <p><strong>Address:</strong> 2229-30100, Eldoret</p>
           </div>
         </div>
       )}
@@ -249,13 +223,9 @@ function HomePage() {
             <h2>{aboutSlides[aboutIndex].heading}</h2>
             <h3>{aboutSlides[aboutIndex].subheading}</h3>
             <p>{aboutSlides[aboutIndex].paragraph}</p>
-            <button
-              className="explore-products-btn"
-              onClick={scrollToProducts}
-            >
+            <button className="explore-products-btn" onClick={scrollToProducts}>
               {aboutSlides[aboutIndex].buttonText}
             </button>
-
             <div className="about-cards-row">
               {aboutSlides[aboutIndex].cards.map((card, idx) => (
                 <div className="about-card" key={idx}>
@@ -265,13 +235,9 @@ function HomePage() {
               ))}
             </div>
           </div>
-
-          {/* Carousel Navigation */}
           <div className="about-carousel-nav">
             <button onClick={handleAboutPrev}>&lt;</button>
-            <span>
-              {aboutIndex + 1} / {aboutSlides.length}
-            </span>
+            <span>{aboutIndex + 1} / {aboutSlides.length}</span>
             <button onClick={handleAboutNext}>&gt;</button>
           </div>
         </div>
@@ -282,31 +248,20 @@ function HomePage() {
         <div className="streamlined-carousel">
           <div className="streamlined-left">
             <div className="streamlined-image">
-              <img
-                src={streamlinedSlides[streamIndex].leftImage}
-                alt="Streamlined Slide"
-              />
+              <img src={streamlinedSlides[streamIndex].leftImage} alt="Streamlined Slide" />
             </div>
             <h3>{streamlinedSlides[streamIndex].leftHeading}</h3>
             <p>{streamlinedSlides[streamIndex].leftText}</p>
-            {/* Request a Consultation opens WhatsApp */}
-            <button
-              className="request-consultation-btn"
-              onClick={openWhatsApp}
-            >
+            <button className="request-consultation-btn" onClick={openWhatsApp}>
               {streamlinedSlides[streamIndex].buttonText}
             </button>
-            <div className="pagination">
-              {streamlinedSlides[streamIndex].pagination}
-            </div>
+            <div className="pagination">{streamlinedSlides[streamIndex].pagination}</div>
           </div>
           <div className="streamlined-right">
             <h3>{streamlinedSlides[streamIndex].rightHeading}</h3>
             <p>{streamlinedSlides[streamIndex].rightText}</p>
           </div>
         </div>
-
-        {/* Carousel Navigation */}
         <div className="streamlined-carousel-nav">
           <button onClick={handleStreamPrev}>&lt;</button>
           <button onClick={handleStreamNext}>&gt;</button>
@@ -318,44 +273,28 @@ function HomePage() {
         <div className="farm-fresh-header">
           <div className="offerings-label">Our Offerings</div>
           <h2>Farm-Fresh Products</h2>
-          <button className="explore-now-btn" onClick={scrollToProducts}>
-            Explore Now
-          </button>
+          <button className="explore-now-btn" onClick={scrollToProducts}>Explore Now</button>
         </div>
         <div className="farm-fresh-cards">
           <div className="farm-card">
-            <img
-              src="https://files.ekmcdn.com/654da0/images/chicken-live-insect-food-pack-723-p.png"
-              alt="Healthy Chickens"
-            />
+            <img src="https://files.ekmcdn.com/654da0/images/chicken-live-insect-food-pack-723-p.png" alt="Healthy Chickens" />
             <h4>Healthy Chickens</h4>
           </div>
           <div className="farm-card">
-            <img
-              src="https://ganico.co.za/wp-content/uploads/2020/11/Farm-Eggs-04.jpg"
-              alt="Organic Eggs"
-            />
+            <img src="https://ganico.co.za/wp-content/uploads/2020/11/Farm-Eggs-04.jpg" alt="Organic Eggs" />
             <h4>Organic Eggs</h4>
           </div>
           <div className="farm-card">
-            <img
-              src="https://www.geldofpoultry.com/media/pages/day-old-chicks/644f31ddb7-1687438190/layer-55.jpg"
-              alt="Day-Old Chicks"
-            />
+            <img src="https://www.geldofpoultry.com/media/pages/day-old-chicks/644f31ddb7-1687438190/layer-55.jpg" alt="Day-Old Chicks" />
             <h4>Day-Old Chicks</h4>
           </div>
           <div className="farm-card">
-            <img
-              src="https://walktoeat.com/wp-content/uploads/2020/08/free-range-chickens.jpg"
-              alt="Quality Chickens"
-            />
+            <img src="https://walktoeat.com/wp-content/uploads/2020/08/free-range-chickens.jpg" alt="Quality Chickens" />
             <h4>Quality Chickens</h4>
           </div>
         </div>
         <p className="farm-fresh-text">
-          ELDO-POULTRY ensures you have an effortless shopping experience, from
-          exploring premium products like healthy chickens and organic eggs to
-          simplified ordering and secure payment options.
+          ELDO-POULTRY ensures you have an effortless shopping experience, from exploring premium products like healthy chickens and organic eggs to simplified ordering and secure payment options.
         </p>
       </section>
 
@@ -364,37 +303,23 @@ function HomePage() {
         <div className="three-card">
           <h3>Transform Your Poultry Purchasing Experience</h3>
           <p>
-            Discover poultry satisfaction with ELDO-POULTRY. Our farm ensures you
-            get healthy chickens and delicious eggs, ensuring every product
-            reaches your table with care and integrity.
+            Discover poultry satisfaction with ELDO-POULTRY. Our farm ensures you get healthy chickens and delicious eggs, ensuring every product reaches your table with care and integrity.
           </p>
-          {/* Explore Our Offerings scrolls to products section */}
-          <button onClick={scrollToProducts}>
-            Explore Our Offerings
-          </button>
+          <button onClick={scrollToProducts}>Explore Our Offerings</button>
         </div>
         <div className="three-card">
           <h3>Easily Browse Our Product Categories</h3>
           <p>
-            Our platform features an intuitive browsing system to help you find
-            the perfect products in no time.
+            Our platform features an intuitive browsing system to help you find the perfect products in no time.
           </p>
-          {/* Start Ordering Today takes to Order page */}
-          <Link to="/order">
-            <button>Start Ordering Today</button>
-          </Link>
+          <Link to="/order"><button>Start Ordering Today</button></Link>
         </div>
         <div className="three-card">
           <h3>Simplified Ordering Process</h3>
           <p>
-            Seamlessly place your desired products with dynamic price
-            calculations in real-time. Confirmation of your order is immediate,
-            ensuring your purchase interactions are frictionless.
+            Seamlessly place your desired products with dynamic price calculations in real-time. Confirmation of your order is immediate, ensuring your purchase interactions are frictionless.
           </p>
-          {/* Learn More About Our Services opens WhatsApp */}
-          <button onClick={openWhatsApp}>
-            Learn More About Our Services
-          </button>
+          <button onClick={openWhatsApp}>Learn More About Our Services</button>
         </div>
       </section>
 
@@ -404,17 +329,11 @@ function HomePage() {
           <h2>Elevate Your Poultry Experience with ELDO-POULTRY</h2>
           <h3>Why Choose Us for Your Poultry Needs?</h3>
           <p>
-            Enjoy the healthiest chickens and freshest eggs delivered straight
-            from our farm. With our ever-expanding catalog, choose a variety of
-            products—nutritious eggs, lively day-old chicks, and fully grown
-            chickens—with real-time pricing options and detailed descriptions.
+            Enjoy the healthiest chickens and freshest eggs delivered straight from our farm. With our ever-expanding catalog, choose a variety of products—nutritious eggs, lively day-old chicks, and fully grown chickens—with real-time pricing options and detailed descriptions.
           </p>
         </div>
         <div className="elevate-image">
-          <img
-            src="https://cdn.britannica.com/18/137318-050-29F7072E/rooster-Rhode-Island-Red-roosters-chicken-domestication.jpg"
-            alt="Chicks on the Farm"
-          />
+          <img src="https://cdn.britannica.com/18/137318-050-29F7072E/rooster-Rhode-Island-Red-roosters-chicken-domestication.jpg" alt="Chicks on the Farm" />
         </div>
       </section>
 
@@ -442,48 +361,25 @@ function HomePage() {
       <section className="community-section">
         <h2>Discover Quality Poultry Products in Your Community</h2>
         <p>
-          Experience the pinnacle of freshness with ELDO-POULTRY dedicated to
-          delivering nutritious eggs and chickens right to your doorstep. Our
-          platform ensures you browse an extensive selection of products,
-          ensuring the highest quality while supporting sustainable farming
-          practices. Enjoy effortless meal planning, a minimal ordering system,
-          and real-time assistance, making your shopping experience smooth and
-          enjoyable.
+          Experience the pinnacle of freshness with ELDO-POULTRY dedicated to delivering nutritious eggs and chickens right to your doorstep. Our platform ensures you browse an extensive selection of products, ensuring the highest quality while supporting sustainable farming practices. Enjoy effortless meal planning, a minimal ordering system, and real-time assistance, making your shopping experience smooth and enjoyable.
         </p>
         <h3>Connect with ELDO-POULTRY Today!</h3>
         <div className="community-images">
-          <img
-            src="https://www.geldofpoultry.com/media/pages/day-old-chicks/644f31ddb7-1687438190/layer-55.jpg"
-            alt="Community Chicken 1"
-          />
-          <img
-            src="https://walktoeat.com/wp-content/uploads/2020/08/free-range-chickens.jpg"
-            alt="Community Chicken 2"
-          />
-          <img
-            src="https://cdn.britannica.com/18/137318-050-29F7072E/rooster-Rhode-Island-Red-roosters-chicken-domestication.jpg"
-            alt="Community Chicken 3"
-          />
-          <img
-            src="https://media.istockphoto.com/id/1217649450/photo/chicken-or-hen-on-a-green-meadow.jpg?s=612x612&w=0&k=20&c=zRlZTkwoc-aWb3kI10OqlRLbiQw3R3_KUIchNVFgYgw="
-            alt="Community Chicken 4"
-          />
-          <img
-            src="https://t4.ftcdn.net/jpg/01/80/06/15/360_F_180061581_X2dk6rx8IApmWMBIIO0wjjPX1A99iYn5.jpg"
-            alt="Community Chicken 5"
-          />
+          <img src="https://www.geldofpoultry.com/media/pages/day-old-chicks/644f31ddb7-1687438190/layer-55.jpg" alt="Community Chicken 1" />
+          <img src="https://walktoeat.com/wp-content/uploads/2020/08/free-range-chickens.jpg" alt="Community Chicken 2" />
+          <img src="https://cdn.britannica.com/18/137318-050-29F7072E/rooster-Rhode-Island-Red-roosters-chicken-domestication.jpg" alt="Community Chicken 3" />
+          <img src="https://media.istockphoto.com/id/1217649450/photo/chicken-or-hen-on-a-green-meadow.jpg?s=612x612&w=0&k=20&c=zRlZTkwoc-aWb3kI10OqlRLbiQw3R3_KUIchNVFgYgw=" alt="Community Chicken 4" />
+          <img src="https://t4.ftcdn.net/jpg/01/80/06/15/360_F_180061581_X2dk6rx8IApmWMBIIO0wjjPX1A99iYn5.jpg" alt="Community Chicken 5" />
         </div>
       </section>
 
-      {/* FOOTER (3 Rows) */}
+      {/* FOOTER (3 ROWS) */}
       <footer className="footer" id="contact">
         {/* Row 1: Brand and description */}
         <div className="footer-row footer-top">
           <h2>ELDO-POULTRY</h2>
           <p>
-            At ELDO-POULTRY, we focus on quality poultry farming. Our dedication to
-            healthy chickens and delicious eggs ensures that you receive the best
-            products straight from our farm.
+            At ELDO-POULTRY, we focus on quality poultry farming. Our dedication to healthy chickens and delicious eggs ensures that you receive the best products straight from our farm.
           </p>
         </div>
         {/* Row 2: Contact information */}
@@ -493,11 +389,7 @@ function HomePage() {
           <p><strong>WhatsApp:</strong> +254 741937056</p>
           <p>
             <strong>TikTok:</strong>{" "}
-            <a
-              href="https://www.tiktok.com/@eldopoultry"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href="https://www.tiktok.com/@eldopoultry" target="_blank" rel="noopener noreferrer">
               @eldopoultry
             </a>
           </p>

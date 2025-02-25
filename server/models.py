@@ -9,6 +9,9 @@ class User(db.Model):
     password_hash = db.Column(db.String(255), nullable=False)
     location = db.Column(db.String(255), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    reset_token = db.Column(db.String(255), nullable=True)
+    reset_token_expires = db.Column(db.DateTime, nullable=True)
+    
     orders = db.relationship('Order', backref='user', lazy=True)
 
     def __repr__(self):

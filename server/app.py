@@ -1,5 +1,6 @@
 # src/app.py
-from flask import Flask
+import os
+from flask import Flask, send_from_directory
 from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_mail import Mail
@@ -10,21 +11,36 @@ from routes.product_routes import product_bp
 from routes.order_routes import order_bp
 from models import User, Product, Order
 
-app = Flask(__name__)
+# Set static_folder to "static" where we'll place the React build (copied by Dockerfile)
+app = Flask(__name__, static_folder="static", static_url_path="/")
 app.config.from_object(Config)
 
 CORS(app)
 db.init_app(app)
 migrate = Migrate(app, db)
 
-# Initialize Flask-Mail
 mail = Mail(app)
 
 app.register_blueprint(auth_bp, url_prefix='/auth')
 app.register_blueprint(product_bp, url_prefix='/products')
 app.register_blueprint(order_bp, url_prefix='/orders')
 
+# Serve React build
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def serve_react(path):
+    """
+    If the requested file exists in the static folder, serve it.
+    Otherwise, serve index.html (the React app's entry point).
+    """
+    if path != "" and os.path.exists(os.path.join(app.static_folder, path)):
+        return send_from_directory(app.static_folder, path)
+    else:
+        return send_from_directory(app.static_folder, 'index.html')
+
 print(app.url_map)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    # For local dev, you can still run the Flask dev server here.
+    # In production, your Dockerfile will use Gunicorn.
+    app.run(host='0.0.0.0', port=5000, debug=True)

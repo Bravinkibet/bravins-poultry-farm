@@ -10,6 +10,7 @@ import Products from './pages/Products';
 import OrderPage from './pages/OrderPage';
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
+import Admin from './pages/Admin';  // Import the Admin component
 import './styles/App.css';
 
 const App = () => {
@@ -24,6 +25,7 @@ const App = () => {
         <Route path="/order" element={<OrderPage />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path="/admin" element={<Admin />} />
       </Routes>
       <Footer />
     </div>

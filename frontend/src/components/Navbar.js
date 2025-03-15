@@ -1,6 +1,7 @@
 // src/components/Navbar.js
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Logout from "./Logout";
 import "../styles/Navbar.css";
 
 const Navbar = () => {
@@ -23,7 +24,7 @@ const Navbar = () => {
       <div className="brand-name">
         <Link to="/">ELDO-POULTRY</Link>
       </div>
-      {/* Desktop nav items */}
+      {/* Desktop Navigation */}
       <div className="nav-items desktop-only">
         <ul className="nav-links">
           <li>
@@ -34,9 +35,7 @@ const Navbar = () => {
           </li>
           {isLoggedIn ? (
             <li>
-              <button className="nav-button" onClick={handleLogout}>
-                Logout
-              </button>
+              <Logout onLogout={handleLogout} />
             </li>
           ) : (
             <li>
@@ -45,11 +44,11 @@ const Navbar = () => {
           )}
         </ul>
       </div>
-      {/* Hamburger icon for mobile */}
+      {/* Hamburger icon for Mobile */}
       <div className="menu-toggle mobile-only" onClick={toggleMobileMenu}>
         <span>&#9776;</span>
       </div>
-      {/* Mobile menu */}
+      {/* Mobile Navigation */}
       {mobileMenuActive && (
         <div className="mobile-menu">
           <ul className="nav-links">
@@ -65,15 +64,12 @@ const Navbar = () => {
             </li>
             {isLoggedIn ? (
               <li>
-                <button
-                  className="nav-button"
-                  onClick={() => {
+                <Logout
+                  onLogout={() => {
                     toggleMobileMenu();
                     handleLogout();
                   }}
-                >
-                  Logout
-                </button>
+                />
               </li>
             ) : (
               <li>

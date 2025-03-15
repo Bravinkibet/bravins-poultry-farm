@@ -1,16 +1,19 @@
 // src/pages/HomePage.js
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Logout from "../components/Logout";
 import "../styles/HomePage.css";
 
 // Responsive NavBar Component
 function NavBar() {
   const [mobileMenuActive, setMobileMenuActive] = useState(false);
+  const isLoggedIn = !!localStorage.getItem("user_token");
 
   const toggleMobileMenu = () => {
     setMobileMenuActive((prev) => !prev);
   };
 
+  // In both desktop and mobile menus, we use the Logout component when logged in.
   return (
     <nav className="navbar">
       <div className="brand-name">
@@ -22,15 +25,28 @@ function NavBar() {
           <li>
             <Link to="/">Home</Link>
           </li>
-          <li>
-            <Link to="/login">Login</Link>
-          </li>
-          <li>
-            <Link to="/signup">Sign Up</Link>
-          </li>
-          <li>
-            <Link to="/order">Place Order</Link>
-          </li>
+          {isLoggedIn ? (
+            <>
+              <li>
+                <Link to="/order">Place Order</Link>
+              </li>
+              <li>
+                <Logout onLogout={() => window.location.reload()} />
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <Link to="/login">Login</Link>
+              </li>
+              <li>
+                <Link to="/signup">Sign Up</Link>
+              </li>
+              <li>
+                <Link to="/order">Place Order</Link>
+              </li>
+            </>
+          )}
         </ul>
       </div>
       {/* Hamburger icon for mobile */}
@@ -46,21 +62,36 @@ function NavBar() {
                 Home
               </Link>
             </li>
-            <li>
-              <Link to="/login" onClick={toggleMobileMenu}>
-                Login
-              </Link>
-            </li>
-            <li>
-              <Link to="/signup" onClick={toggleMobileMenu}>
-                Sign Up
-              </Link>
-            </li>
-            <li>
-              <Link to="/order" onClick={toggleMobileMenu}>
-                Place Order
-              </Link>
-            </li>
+            {isLoggedIn ? (
+              <>
+                <li>
+                  <Link to="/order" onClick={toggleMobileMenu}>
+                    Place Order
+                  </Link>
+                </li>
+                <li>
+                  <Logout onLogout={() => { toggleMobileMenu(); window.location.reload(); }} />
+                </li>
+              </>
+            ) : (
+              <>
+                <li>
+                  <Link to="/login" onClick={toggleMobileMenu}>
+                    Login
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/signup" onClick={toggleMobileMenu}>
+                    Sign Up
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/order" onClick={toggleMobileMenu}>
+                    Place Order
+                  </Link>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       )}

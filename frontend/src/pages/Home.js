@@ -3,6 +3,71 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../styles/HomePage.css";
 
+// Responsive NavBar Component
+function NavBar() {
+  const [mobileMenuActive, setMobileMenuActive] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setMobileMenuActive((prev) => !prev);
+  };
+
+  return (
+    <nav className="navbar">
+      <div className="brand-name">
+        <Link to="/">ELDO-POULTRY</Link>
+      </div>
+      {/* Desktop nav items */}
+      <div className="nav-items desktop-only">
+        <ul className="nav-links">
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/login">Login</Link>
+          </li>
+          <li>
+            <Link to="/signup">Sign Up</Link>
+          </li>
+          <li>
+            <Link to="/order">Place Order</Link>
+          </li>
+        </ul>
+      </div>
+      {/* Hamburger icon for mobile */}
+      <div className="menu-toggle mobile-only" onClick={toggleMobileMenu}>
+        <span>&#9776;</span>
+      </div>
+      {/* Mobile menu */}
+      {mobileMenuActive && (
+        <div className="mobile-menu">
+          <ul className="nav-links">
+            <li>
+              <Link to="/" onClick={toggleMobileMenu}>
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link to="/login" onClick={toggleMobileMenu}>
+                Login
+              </Link>
+            </li>
+            <li>
+              <Link to="/signup" onClick={toggleMobileMenu}>
+                Sign Up
+              </Link>
+            </li>
+            <li>
+              <Link to="/order" onClick={toggleMobileMenu}>
+                Place Order
+              </Link>
+            </li>
+          </ul>
+        </div>
+      )}
+    </nav>
+  );
+}
+
 function HomePage() {
   // Carousel state for About ELDO-POULTRY
   const aboutSlides = [
@@ -164,6 +229,9 @@ function HomePage() {
 
   return (
     <div className="eldo-poultry-container">
+      {/* NAVBAR */}
+      <NavBar />
+
       {/* HERO SECTION */}
       <section className="hero-section">
         <div className="hero-text-area">
@@ -237,7 +305,9 @@ function HomePage() {
           </div>
           <div className="about-carousel-nav">
             <button onClick={handleAboutPrev}>&lt;</button>
-            <span>{aboutIndex + 1} / {aboutSlides.length}</span>
+            <span>
+              {aboutIndex + 1} / {aboutSlides.length}
+            </span>
             <button onClick={handleAboutNext}>&gt;</button>
           </div>
         </div>
@@ -248,14 +318,22 @@ function HomePage() {
         <div className="streamlined-carousel">
           <div className="streamlined-left">
             <div className="streamlined-image">
-              <img src={streamlinedSlides[streamIndex].leftImage} alt="Streamlined Slide" />
+              <img
+                src={streamlinedSlides[streamIndex].leftImage}
+                alt="Streamlined Slide"
+              />
             </div>
             <h3>{streamlinedSlides[streamIndex].leftHeading}</h3>
             <p>{streamlinedSlides[streamIndex].leftText}</p>
-            <button className="request-consultation-btn" onClick={openWhatsApp}>
+            <button
+              className="request-consultation-btn"
+              onClick={openWhatsApp}
+            >
               {streamlinedSlides[streamIndex].buttonText}
             </button>
-            <div className="pagination">{streamlinedSlides[streamIndex].pagination}</div>
+            <div className="pagination">
+              {streamlinedSlides[streamIndex].pagination}
+            </div>
           </div>
           <div className="streamlined-right">
             <h3>{streamlinedSlides[streamIndex].rightHeading}</h3>
@@ -273,28 +351,44 @@ function HomePage() {
         <div className="farm-fresh-header">
           <div className="offerings-label">Our Offerings</div>
           <h2>Farm-Fresh Products</h2>
-          <button className="explore-now-btn" onClick={scrollToProducts}>Explore Now</button>
+          <button className="explore-now-btn" onClick={scrollToProducts}>
+            Explore Now
+          </button>
         </div>
         <div className="farm-fresh-cards">
           <div className="farm-card">
-            <img src="https://files.ekmcdn.com/654da0/images/chicken-live-insect-food-pack-723-p.png" alt="Healthy Chickens" />
+            <img
+              src="https://files.ekmcdn.com/654da0/images/chicken-live-insect-food-pack-723-p.png"
+              alt="Healthy Chickens"
+            />
             <h4>Healthy Chickens</h4>
           </div>
           <div className="farm-card">
-            <img src="https://ganico.co.za/wp-content/uploads/2020/11/Farm-Eggs-04.jpg" alt="Organic Eggs" />
+            <img
+              src="https://ganico.co.za/wp-content/uploads/2020/11/Farm-Eggs-04.jpg"
+              alt="Organic Eggs"
+            />
             <h4>Organic Eggs</h4>
           </div>
           <div className="farm-card">
-            <img src="https://www.geldofpoultry.com/media/pages/day-old-chicks/644f31ddb7-1687438190/layer-55.jpg" alt="Day-Old Chicks" />
+            <img
+              src="https://www.geldofpoultry.com/media/pages/day-old-chicks/644f31ddb7-1687438190/layer-55.jpg"
+              alt="Day-Old Chicks"
+            />
             <h4>Day-Old Chicks</h4>
           </div>
           <div className="farm-card">
-            <img src="https://walktoeat.com/wp-content/uploads/2020/08/free-range-chickens.jpg" alt="Quality Chickens" />
+            <img
+              src="https://walktoeat.com/wp-content/uploads/2020/08/free-range-chickens.jpg"
+              alt="Quality Chickens"
+            />
             <h4>Quality Chickens</h4>
           </div>
         </div>
         <p className="farm-fresh-text">
-          ELDO-POULTRY ensures you have an effortless shopping experience, from exploring premium products like healthy chickens and organic eggs to simplified ordering and secure payment options.
+          ELDO-POULTRY ensures you have an effortless shopping experience, from
+          exploring premium products like healthy chickens and organic eggs to
+          simplified ordering and secure payment options.
         </p>
       </section>
 
@@ -303,23 +397,32 @@ function HomePage() {
         <div className="three-card">
           <h3>Transform Your Poultry Purchasing Experience</h3>
           <p>
-            Discover poultry satisfaction with ELDO-POULTRY. Our farm ensures you get healthy chickens and delicious eggs, ensuring every product reaches your table with care and integrity.
+            Discover poultry satisfaction with ELDO-POULTRY. Our farm ensures you
+            get healthy chickens and delicious eggs, ensuring every product reaches
+            your table with care and integrity.
           </p>
           <button onClick={scrollToProducts}>Explore Our Offerings</button>
         </div>
         <div className="three-card">
           <h3>Easily Browse Our Product Categories</h3>
           <p>
-            Our platform features an intuitive browsing system to help you find the perfect products in no time.
+            Our platform features an intuitive browsing system to help you find the
+            perfect products in no time.
           </p>
-          <Link to="/order"><button>Start Ordering Today</button></Link>
+          <Link to="/order">
+            <button>Start Ordering Today</button>
+          </Link>
         </div>
         <div className="three-card">
           <h3>Simplified Ordering Process</h3>
           <p>
-            Seamlessly place your desired products with dynamic price calculations in real-time. Confirmation of your order is immediate, ensuring your purchase interactions are frictionless.
+            Seamlessly place your desired products with dynamic price calculations
+            in real-time. Confirmation of your order is immediate, ensuring your
+            purchase interactions are frictionless.
           </p>
-          <button onClick={openWhatsApp}>Learn More About Our Services</button>
+          <button onClick={openWhatsApp}>
+            Learn More About Our Services
+          </button>
         </div>
       </section>
 
@@ -329,11 +432,17 @@ function HomePage() {
           <h2>Elevate Your Poultry Experience with ELDO-POULTRY</h2>
           <h3>Why Choose Us for Your Poultry Needs?</h3>
           <p>
-            Enjoy the healthiest chickens and freshest eggs delivered straight from our farm. With our ever-expanding catalog, choose a variety of products—nutritious eggs, lively day-old chicks, and fully grown chickens—with real-time pricing options and detailed descriptions.
+            Enjoy the healthiest chickens and freshest eggs delivered straight from
+            our farm. With our ever-expanding catalog, choose a variety of products—
+            nutritious eggs, lively day-old chicks, and fully grown chickens—with
+            real-time pricing options and detailed descriptions.
           </p>
         </div>
         <div className="elevate-image">
-          <img src="https://cdn.britannica.com/18/137318-050-29F7072E/rooster-Rhode-Island-Red-roosters-chicken-domestication.jpg" alt="Chicks on the Farm" />
+          <img
+            src="https://cdn.britannica.com/18/137318-050-29F7072E/rooster-Rhode-Island-Red-roosters-chicken-domestication.jpg"
+            alt="Chicks on the Farm"
+          />
         </div>
       </section>
 
@@ -361,15 +470,35 @@ function HomePage() {
       <section className="community-section">
         <h2>Discover Quality Poultry Products in Your Community</h2>
         <p>
-          Experience the pinnacle of freshness with ELDO-POULTRY dedicated to delivering nutritious eggs and chickens right to your doorstep. Our platform ensures you browse an extensive selection of products, ensuring the highest quality while supporting sustainable farming practices. Enjoy effortless meal planning, a minimal ordering system, and real-time assistance, making your shopping experience smooth and enjoyable.
+          Experience the pinnacle of freshness with ELDO-POULTRY dedicated to
+          delivering nutritious eggs and chickens right to your doorstep. Our
+          platform ensures you browse an extensive selection of products, ensuring
+          the highest quality while supporting sustainable farming practices.
+          Enjoy effortless meal planning, a minimal ordering system, and real-time
+          assistance, making your shopping experience smooth and enjoyable.
         </p>
         <h3>Connect with ELDO-POULTRY Today!</h3>
         <div className="community-images">
-          <img src="https://www.geldofpoultry.com/media/pages/day-old-chicks/644f31ddb7-1687438190/layer-55.jpg" alt="Community Chicken 1" />
-          <img src="https://walktoeat.com/wp-content/uploads/2020/08/free-range-chickens.jpg" alt="Community Chicken 2" />
-          <img src="https://cdn.britannica.com/18/137318-050-29F7072E/rooster-Rhode-Island-Red-roosters-chicken-domestication.jpg" alt="Community Chicken 3" />
-          <img src="https://media.istockphoto.com/id/1217649450/photo/chicken-or-hen-on-a-green-meadow.jpg?s=612x612&w=0&k=20&c=zRlZTkwoc-aWb3kI10OqlRLbiQw3R3_KUIchNVFgYgw=" alt="Community Chicken 4" />
-          <img src="https://t4.ftcdn.net/jpg/01/80/06/15/360_F_180061581_X2dk6rx8IApmWMBIIO0wjjPX1A99iYn5.jpg" alt="Community Chicken 5" />
+          <img
+            src="https://www.geldofpoultry.com/media/pages/day-old-chicks/644f31ddb7-1687438190/layer-55.jpg"
+            alt="Community Chicken 1"
+          />
+          <img
+            src="https://walktoeat.com/wp-content/uploads/2020/08/free-range-chickens.jpg"
+            alt="Community Chicken 2"
+          />
+          <img
+            src="https://cdn.britannica.com/18/137318-050-29F7072E/rooster-Rhode-Island-Red-roosters-chicken-domestication.jpg"
+            alt="Community Chicken 3"
+          />
+          <img
+            src="https://media.istockphoto.com/id/1217649450/photo/chicken-or-hen-on-a-green-meadow.jpg?s=612x612&w=0&k=20&c=zRlZTkwoc-aWb3kI10OqlRLbiQw3R3_KUIchNVFgYgw="
+            alt="Community Chicken 4"
+          />
+          <img
+            src="https://t4.ftcdn.net/jpg/01/80/06/15/360_F_180061581_X2dk6rx8IApmWMBIIO0wjjPX1A99iYn5.jpg"
+            alt="Community Chicken 5"
+          />
         </div>
       </section>
 
@@ -379,30 +508,48 @@ function HomePage() {
         <div className="footer-row footer-top">
           <h2>ELDO-POULTRY</h2>
           <p>
-            At ELDO-POULTRY, we focus on quality poultry farming. Our dedication to healthy chickens and delicious eggs ensures that you receive the best products straight from our farm.
+            At ELDO-POULTRY, we focus on quality poultry farming. Our dedication to healthy
+            chickens and delicious eggs ensures that you receive the best products straight from
+            our farm.
           </p>
         </div>
         {/* Row 2: Contact information */}
         <div className="footer-row contacts">
-          <p><strong>Phone:</strong> +254 741937056</p>
-          <p><strong>Email:</strong> eldopoultry254@gmail.com</p>
-          <p><strong>WhatsApp:</strong> +254 741937056</p>
+          <p>
+            <strong>Phone:</strong> +254 741937056
+          </p>
+          <p>
+            <strong>Email:</strong> eldopoultry254@gmail.com
+          </p>
+          <p>
+            <strong>WhatsApp:</strong> +254 741937056
+          </p>
           <p>
             <strong>TikTok:</strong>{" "}
             <a href="https://www.tiktok.com/@eldopoultry" target="_blank" rel="noopener noreferrer">
               @eldopoultry
             </a>
           </p>
-          <p><strong>Address:</strong> 2229-30100, Eldoret</p>
+          <p>
+            <strong>Address:</strong> 2229-30100, Eldoret
+          </p>
         </div>
         {/* Row 3: Quick Links */}
         <div className="footer-row quick-links">
           <h3>Quick Links</h3>
           <ul>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/order">Order</Link></li>
-            <li><Link to="/login">Login</Link></li>
-            <li><Link to="/signup">Sign Up</Link></li>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/order">Order</Link>
+            </li>
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
+            <li>
+              <Link to="/signup">Sign Up</Link>
+            </li>
           </ul>
         </div>
       </footer>

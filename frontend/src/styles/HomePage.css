@@ -49,6 +49,7 @@ ul {
 .navbar-right {
   display: flex;
   align-items: center;
+  gap: 10px;
 }
 
 .nav-links {
@@ -84,6 +85,14 @@ ul {
 
 .order-now-btn:hover {
   background-color: #255c28;
+}
+
+/* Hamburger Menu Toggle (Hidden on Desktop) */
+.menu-toggle {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: #333;
 }
 
 /*************************************************************
@@ -200,7 +209,7 @@ ul {
 }
 
 .about-slide-container {
-  max-width: 10000px;
+  max-width: 100%;
   margin: 0 auto;
   position: relative;
 }
@@ -210,7 +219,6 @@ ul {
   border-radius: 8px;
   padding: 30px;
   box-shadow: 0 1px 5px rgba(0,0,0,0.07);
-  max-width: 10000px;
 }
 
 .about-slide-content h2 {
@@ -257,9 +265,8 @@ ul {
 
 .about-card {
   background-color: #fff;
-  padding: 50px 50px;
+  padding: 50px;
   border-radius: 8px;
-  max-width: 2800px;
   text-align: left;
   box-shadow: 0 1px 5px rgba(0,0,0,0.07);
 }
@@ -311,7 +318,6 @@ ul {
   flex-wrap: wrap;
   gap: 30px;
   align-items: flex-start;
-  max-width: 100000px;
   margin: 0 auto;
   background-color: #f9f9f9;
   padding: 30px;
@@ -440,6 +446,7 @@ ul {
   color: #fff;
 }
 
+/* Changed from a fixed width to a fluid container */
 .farm-fresh-cards {
   display: flex;
   flex-wrap: wrap;
@@ -447,7 +454,8 @@ ul {
   justify-content: center;
   margin-bottom: 20px;
   padding: 20px;
-  width: 1500px;
+  width: 100%;
+  max-width: 1500px;
 }
 
 .farm-card {
@@ -571,7 +579,6 @@ ul {
 .three-card {
   background-color: #fff;
   flex: 1 1 300px;
-  max-width: 3600px;
   padding: 100px;
   border-radius: 10px;
   text-align: center;
@@ -804,10 +811,7 @@ ul {
 }
 
 /*************************************************************
-  CONTACT MODAL (Styled like Logout Pop-up)
-**************************************************************/
-/*************************************************************
-  CONTACT MODAL (Styled like Logout Pop-up)
+  CONTACT MODAL (and LOGOUT POPUP styling)
 **************************************************************/
 .modal {
   position: fixed;
@@ -834,21 +838,12 @@ ul {
   width: 100%;
 }
 
-.modal-content.contact-modal h1 {
-  font-size: 36px;
-  margin-bottom: 25px;
-  color: #fff;
-}
-
-.modal-content.contact-modal p {
-  font-size: 16px;
-  margin-bottom: 10px;
-  color: #fff;
-}
-
-.modal-content.contact-modal a {
-  color: #fff;
-  text-decoration: underline;
+/* Responsive adjustments for modal on smaller screens */
+@media (max-width: 480px) {
+  .modal-content.contact-modal {
+    padding: 15px 20px;
+    max-width: 90%;
+  }
 }
 
 /*************************************************************
@@ -862,9 +857,25 @@ ul {
 }
 
 @media (max-width: 768px) {
+  /* Navbar: Show hamburger menu & hide links by default */
   .nav-links {
-    display: none; /* For mobile, implement a hamburger menu */
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    padding: 10px 0;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   }
+  .nav-links.active {
+    display: flex;
+  }
+  .menu-toggle {
+    display: block;
+  }
+
   .navbar-right {
     gap: 10px;
   }
@@ -877,5 +888,42 @@ ul {
   .three-card-section {
     flex-direction: column;
     align-items: center;
+  }
+}
+.desktop-only {
+  display: flex;
+}
+
+.mobile-only {
+  display: none;
+}
+
+.mobile-menu {
+  position: absolute;
+  top: 60px; /* adjust based on your navbar height */
+  left: 0;
+  width: 100%;
+  background: #fff;
+  padding: 10px 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 998;
+}
+
+.mobile-menu .nav-links {
+  flex-direction: column;
+  align-items: center;
+}
+
+.mobile-menu .nav-links li {
+  margin: 10px 0;
+}
+
+/* Media Query for Mobile (max-width: 768px) */
+@media (max-width: 768px) {
+  .desktop-only {
+    display: none;
+  }
+  .mobile-only {
+    display: block;
   }
 }

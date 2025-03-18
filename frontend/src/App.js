@@ -10,7 +10,11 @@ import Products from './pages/Products';
 import OrderPage from './pages/OrderPage';
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
-import Admin from './pages/Admin';  // Import the Admin component
+import Admin from './pages/Admin';
+import Overview from './pages/admin/Overview';
+import UsersManagement from './pages/admin/UsersManagement';
+import OrdersManagement from './pages/admin/OrdersManagement';
+import ProductsManagement from './pages/admin/ProductsManagement';
 import './styles/App.css';
 
 const App = () => {
@@ -18,6 +22,7 @@ const App = () => {
     <div className="app">
       <Navbar />
       <Routes>
+        {/* Public Routes */}
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
@@ -25,7 +30,14 @@ const App = () => {
         <Route path="/order" element={<OrderPage />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
-        <Route path="/admin" element={<Admin />} />
+
+        {/* Admin Routes with Nested Pages */}
+        <Route path="/admin" element={<Admin />}>
+          <Route path="overview" element={<Overview />} />
+          <Route path="users" element={<UsersManagement />} />
+          <Route path="orders" element={<OrdersManagement />} />
+          <Route path="products" element={<ProductsManagement />} />
+        </Route>
       </Routes>
       <Footer />
     </div>

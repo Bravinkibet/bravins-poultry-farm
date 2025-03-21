@@ -59,12 +59,24 @@ const Login = () => {
           </div>
           <button type="submit" className="login-btn">Log In</button>
         </form>
+
         <p className="signup-link">
           Don't have an account? <Link to="/signup" className="login-link">Sign Up</Link>
         </p>
         <p className="forgot-password">
           <Link to="/forgot-password">Forgot Password?</Link>
         </p>
+
+        {/* Admin Login Image/Link */}
+        <div className="admin-login-link">
+          <Link to="/admin-login">
+            <img
+              src="https://t4.ftcdn.net/jpg/04/75/00/99/360_F_475009987_zwsk4c77x3cTpcI3W1C1LU4pOSyPKaqi.jpg"
+              alt="Admin Login"
+              className="admin-login-img"
+            />
+          </Link>
+        </div>
       </div>
     </div>
   );

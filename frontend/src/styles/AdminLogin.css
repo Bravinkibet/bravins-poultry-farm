@@ -1,4 +1,4 @@
-/* src/styles/Login.css */
+/* src/styles/AdminLogin.css */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
 * {
@@ -8,27 +8,26 @@
   font-family: 'Poppins', sans-serif;
 }
 
-.login-container {
+.admin-login-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  /* Using one of your images as background */
+  /* Using a background image similar to your user login */
   background-image: url('https://t4.ftcdn.net/jpg/01/80/06/15/360_F_180061581_X2dk6rx8IApmWMBIIO0wjjPX1A99iYn5.jpg');
   background-size: cover;
   background-position: center;
 }
 
-.form-container {
+.admin-form-container {
   background-color: rgba(0, 0, 0, 0.6);
   padding: 30px;
   border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  text-align: center;
   width: 400px;
+  text-align: center;
 }
 
-h2 {
+.admin-form-container h2 {
   color: white;
   font-size: 36px;
   margin-bottom: 20px;
@@ -38,7 +37,7 @@ h2 {
   margin-bottom: 20px;
 }
 
-input {
+.admin-form-container input {
   width: 100%;
   padding: 15px;
   border-radius: 25px;
@@ -47,7 +46,7 @@ input {
   font-size: 18px;
 }
 
-button {
+.admin-login-btn {
   width: 100%;
   padding: 15px;
   background-color: #ff6f61;
@@ -56,40 +55,23 @@ button {
   font-size: 18px;
   border-radius: 25px;
   cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
 }
 
-button:hover {
+.admin-login-btn:hover {
   background-color: #ff3d2e;
 }
 
-.signup-link {
+.back-home-link {
   margin-top: 20px;
-  color: white;
 }
 
-.signup-link a {
+.back-home-link a {
   color: #ff6f61;
   text-decoration: none;
+  font-weight: 500;
 }
 
-.signup-link a:hover {
+.back-home-link a:hover {
   text-decoration: underline;
-}
-/* Admin login image link container */
-.admin-login-link {
-  margin-top: 20px;
-  text-align: center;
-}
-
-.admin-login-link .admin-login-img {
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  border: 2px solid #ff6f61;
-  cursor: pointer;
-  transition: transform 0.3s ease-in-out;
-}
-
-.admin-login-link .admin-login-img:hover {
-  transform: scale(1.1);
 }

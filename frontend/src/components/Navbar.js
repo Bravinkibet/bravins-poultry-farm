@@ -7,16 +7,22 @@ import "../styles/Navbar.css";
 const Navbar = () => {
   const [mobileMenuActive, setMobileMenuActive] = useState(false);
   const navigate = useNavigate();
-  const isLoggedIn = !!localStorage.getItem("user_token");
+  
+  // Check for regular user token and admin token separately
+  const isUser = !!localStorage.getItem("user_token");
+  const isAdmin = !!localStorage.getItem("admin");
+
+  // If either admin or user is logged in, show logout; otherwise, show login/signup
+  const handleLogout = () => {
+    // Remove both tokens just in case
+    localStorage.removeItem("user_token");
+    localStorage.removeItem("admin");
+    navigate("/");
+    window.location.reload();
+  };
 
   const toggleMobileMenu = () => {
     setMobileMenuActive((prev) => !prev);
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem("user_token");
-    navigate("/");
-    window.location.reload();
   };
 
   return (
@@ -30,10 +36,12 @@ const Navbar = () => {
           <li>
             <Link to="/">Home</Link>
           </li>
-          <li>
-            <Link to="/order">Place Order</Link>
-          </li>
-          {isLoggedIn ? (
+          {(!isAdmin) && (
+            <li>
+              <Link to="/order">Place Order</Link>
+            </li>
+          )}
+          {isUser || isAdmin ? (
             <li>
               <Logout onLogout={handleLogout} />
             </li>
@@ -57,12 +65,14 @@ const Navbar = () => {
                 Home
               </Link>
             </li>
-            <li>
-              <Link to="/order" onClick={toggleMobileMenu}>
-                Place Order
-              </Link>
-            </li>
-            {isLoggedIn ? (
+            {(!isAdmin) && (
+              <li>
+                <Link to="/order" onClick={toggleMobileMenu}>
+                  Place Order
+                </Link>
+              </li>
+            )}
+            {isUser || isAdmin ? (
               <li>
                 <Logout
                   onLogout={() => {

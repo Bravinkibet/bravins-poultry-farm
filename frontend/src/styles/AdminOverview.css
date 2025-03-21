@@ -1,0 +1,37 @@
+/* AdminOverview.css */
+.overview-page {
+    padding: 20px;
+    color: #333;
+  }
+  
+  .overview-page h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+  
+  .admin-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .admin-card {
+    flex: 1;
+    min-width: 150px;
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  .admin-card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .admin-card p {
+    font-size: 24px;
+    color: #2b6e2f;
+  }
+  

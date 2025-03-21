@@ -10,6 +10,34 @@ from models import User
 
 auth_bp = Blueprint('auth', __name__)
 
+# Hard-coded admin credentials (for demo; consider secure storage in production)
+ADMINS = [
+    {
+        "username": "Bravin",
+        "email": "bravink599@gmail.com",
+        "phone": "0741937056",
+        "password": "42236662"
+    },
+    {
+        "username": "Collins",
+        "email": "ckkipro@gmail.com",
+        "phone": "0722968119",
+        "password": "0722968119"
+    },
+    {
+        "username": "Symon",
+        "email": "symonsang21@gmail.com",
+        "phone": "0720705157",
+        "password": "Bravink599"
+    },
+    {
+        "username": "Eldo-poultry",
+        "email": "eldopoultry254@gmail.com",
+        "phone": "0741937056",
+        "password": "Ronaldo7"
+    },
+]
+
 @auth_bp.route('/register', methods=['POST'])
 @cross_origin()
 def register():
@@ -23,7 +51,8 @@ def register():
             username=data['username'], 
             email=data['email'], 
             password_hash=hashed_password, 
-            location=data['location']
+            location=data['location'],
+            phone=data.get('phoneNumber', '')
         )
         db.session.add(new_user)
         db.session.commit()
@@ -31,7 +60,6 @@ def register():
     except Exception as e:
         db.session.rollback()
         return jsonify({'message': 'Error registering user', 'error': str(e)}), 500
-
 
 @auth_bp.route('/login', methods=['POST'])
 @cross_origin()
@@ -49,6 +77,24 @@ def login():
     except Exception as e:
         return jsonify({'message': 'Error during login', 'error': str(e)}), 500
 
+@auth_bp.route('/admin-login', methods=['POST'])
+@cross_origin()
+def admin_login():
+    data = request.get_json()
+    if not data or 'email' not in data or 'password' not in data:
+        return jsonify({'message': 'Email and password required'}), 400
+
+    # Check against hard-coded admin list
+    for admin in ADMINS:
+        if admin['email'] == data['email'] and admin['password'] == data['password']:
+            # Optionally, you could create or update a User in the DB marked as admin
+            # For now, simply return success with an admin flag
+            return jsonify({
+                'message': 'Admin login successful',
+                'admin': True,
+                'username': admin['username']
+            }), 200
+    return jsonify({'message': 'Invalid admin credentials'}), 401
 
 @auth_bp.route('/forgot-password', methods=['POST', 'OPTIONS'])
 @cross_origin()
@@ -60,11 +106,9 @@ def forgot_password():
     email = data['email']
     user = User.query.filter_by(email=email).first()
 
-    # Always return a generic message to avoid email enumeration
     if not user:
         return jsonify({'message': 'If that email is in our system, a reset link will be sent.'}), 200
 
-    # Generate a secure token and set expiration (1 hour)
     token = secrets.token_urlsafe(32)
     expires_at = datetime.utcnow() + timedelta(hours=1)
 
@@ -72,14 +116,10 @@ def forgot_password():
     user.reset_token_expires = expires_at
     db.session.commit()
 
-    # Import mail instance from app (avoid circular import)
     from app import mail
-
-    # Construct the reset link. Adjust the domain/port as needed.
     reset_link = f"http://127.0.0.1:3000/reset-password?token={token}"
     
-    msg = Message("Reset Your Password",
-                  recipients=[user.email])
+    msg = Message("Reset Your Password", recipients=[user.email])
     msg.body = (
         f"Hi {user.username},\n\n"
         f"To reset your password, please click the following link:\n{reset_link}\n\n"
@@ -89,11 +129,9 @@ def forgot_password():
     try:
         mail.send(msg)
     except Exception as e:
-        # Log the email error; you might want to integrate proper logging
         print("Mail sending error:", e)
 
     return jsonify({'message': 'If that email is in our system, a reset link will be sent.'}), 200
-
 
 @auth_bp.route('/reset-password', methods=['POST', 'OPTIONS'])
 @cross_origin()
@@ -112,7 +150,6 @@ def reset_password():
     if not user.reset_token_expires or user.reset_token_expires < datetime.utcnow():
         return jsonify({'message': 'Token has expired'}), 400
 
-    # Update the password and invalidate the token
     user.password_hash = generate_password_hash(new_password)
     user.reset_token = None
     user.reset_token_expires = None

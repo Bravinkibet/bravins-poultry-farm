@@ -23,7 +23,7 @@ app.register_blueprint(auth_bp, url_prefix='/auth')
 app.register_blueprint(product_bp, url_prefix='/products')
 app.register_blueprint(order_bp, url_prefix='/orders')
 
-# Serve React build
+# Serve React Build
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def serve_react(path):

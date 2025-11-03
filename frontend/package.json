@@ -2,6 +2,9 @@
   "name": "bravins-poultry-farm",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "18.x"
+  },
   "dependencies": {
     "@tanstack/react-query": "^5.68.0",
     "axios": "^1.7.9",
@@ -36,8 +39,6 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "react-scripts": "^5.0.1",
-    "webpack": "^5.89.0",
-    "webpack-sources": "^3.2.3"
+    "react-scripts": "^5.0.1"
   }
 }
